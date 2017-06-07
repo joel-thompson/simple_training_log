@@ -1,6 +1,13 @@
-<h2>Logging Progress</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
 
-<p><%= link_to "Click here to sign up", signup_path %></p>
+<div class="center jumbotron">
+  <h1>Logging Progress</h1>
+
+   <h2>
+    This is the home page for the simple training log.
+  </h2>
+
+  <%= link_to "Click here to sign up", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails logo"),
+            'http://rubyonrails.org/' %>
