@@ -1,5 +1,7 @@
 require 'test_helper'
 
+# currently working on migrating this to RSpec
+
 class UserTest < ActiveSupport::TestCase
 
 	def setup
