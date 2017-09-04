@@ -39,6 +39,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'bootstrap-sass', '3.3.7'
 gem 'rails-controller-testing'
+gem 'faker',  '1.8.4'
+gem 'will_paginate', '3.1.6'
+gem 'will_paginate-bootstrap', '1.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
