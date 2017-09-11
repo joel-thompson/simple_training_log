@@ -93,4 +93,15 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # fixtures :all
+
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
+
+  # Log in as a particular user.
+  def log_in_as(user)
+    session[:user_id] = user.id
+  end
 end
