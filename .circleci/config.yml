@@ -10,12 +10,12 @@ jobs:
       - image: circleci/ruby:2.4.1-node
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: simple_training_log-test
+          PGUSER: simple_training_log
           RAILS_ENV: test
       - image: circleci/postgres:9.6-alpine
         environment:
           POSTGRES_USER: simple_training_log
-          POSTGRES_DB: simple_training_log-test
+          POSTGRES_DB: simple_training_log_test
           POSTGRES_PASSWORD: ""
 
 
