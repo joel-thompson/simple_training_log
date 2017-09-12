@@ -56,8 +56,7 @@ jobs:
             rspec -r rspec_junit_formatter --format progress \
                             --format RspecJunitFormatter \
                             --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            "${TEST_FILES}"
+                            --format progress
 
       # collect reports
       - store_test_results:
