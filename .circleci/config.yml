@@ -41,8 +41,8 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: rails db:create
-      - run: rails db:schema:load
+      - run: bin/rails db:create
+      - run: bin/rails db:schema:load
 
       # run tests!
       - run:
@@ -54,8 +54,7 @@ jobs:
             rspec --format progress \
                             --format RspecJunitFormatter \
                             --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            "${TEST_FILES}"
+                            --format progress
 
       # collect reports
       - store_test_results:
