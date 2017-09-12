@@ -41,8 +41,8 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: bin/rails db:create
-      - run: bin/rails db:schema:load
+      - run: ./bin/rails db:create
+      - run: ./bin/rails db:schema:load
 
       # run tests!
       - run:
