@@ -29,6 +29,26 @@ RSpec.describe UsersController, type: :controller do
       expect(@other_user.reload.admin?).to eq false
     end
 
+    it "should not allow non admins to delete users" do
+      log_in_as(@other_user)
+      expect{
+        delete :destroy, params: { id: @user.id }
+      }.to_not change{User.count}
+    end
+
+    it "should not allow non logged in people to delete users" do
+      expect{
+        delete :destroy, params: { id: @user.id }
+      }.to_not change{User.count}
+    end
+
+    it "should allow admins to delete users" do
+      log_in_as(@user)
+      expect{
+        delete :destroy, params: { id: @other_user.id }
+      }.to change{User.count}.by(-1)
+    end
+
   end
 
 end
