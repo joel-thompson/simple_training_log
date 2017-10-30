@@ -18,6 +18,3 @@
 .env
 
 .DS_Store
-
-# ignore my env secrets
-secrets.env
