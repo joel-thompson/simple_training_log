@@ -1,0 +1,12 @@
+#!/bin/sh
+# script/bootstrap: Download dependencies required.
+# gems
+# Missing/assumed present: rbenv, ruby, bundler, postgres
+
+if ! brew ls --versions ImageMagick > /dev/null ; then
+  echo "==> Installing ImageMagick via homebrew..."
+  brew install ImageMagick
+fi
+
+# install gems
+bundle install

@@ -1,0 +1,13 @@
+#!/bin/sh
+# script/setup: Ensure the environment is set to a known initial state.
+
+set -e
+
+DIR=`dirname $0`
+
+# Bootstrap
+$DIR/bootstrap
+
+echo "==> Setting up initial database state..."
+cd $DIR/..
+bin/rails db:reset

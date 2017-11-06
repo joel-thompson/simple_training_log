@@ -1,0 +1,16 @@
+#!/bin/sh
+# script/update: Update dependencies and database.
+
+set -e
+
+DIR=`dirname $0`
+
+# Bootstrap
+$DIR/bootstrap
+
+echo "==> Clearing development logs..."
+rm -rf $DIR/../log || true
+
+echo "==> Updating database..."
+cd $DIR/..
+bin/rails db:migrate
