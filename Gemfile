@@ -44,7 +44,9 @@ gem 'will_paginate-bootstrap', '1.0.1'
 gem 'rubocop', '~> 0.50.0', require: false
 gem 'pry'
 gem 'pry-rails'
-
+gem 'carrierwave', '1.1.0'
+gem 'mini_magick', '4.8.0'
+gem 'fog', '1.42.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

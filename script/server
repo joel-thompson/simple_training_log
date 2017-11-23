@@ -1,0 +1,9 @@
+#!/bin/sh
+# script/server: starts the rails server
+
+set -e
+
+DIR=`dirname $0`
+
+echo "==> Starting server..."
+./bin/rails server
