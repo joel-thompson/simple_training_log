@@ -6,6 +6,7 @@
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
+      <%= link_to "(resend activation email)", new_account_activation_url(email: @user.email) if @user%>
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>

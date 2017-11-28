@@ -15,4 +15,12 @@ class AccountActivationsController < ApplicationController
     end
   end
 
+  def new
+    user = User.find_by(email: params[:email])
+    user.resend_activation_email
+    message  = "Invitation link sent"
+    flash[:info] = message
+    redirect_to login_url
+  end
+
 end
