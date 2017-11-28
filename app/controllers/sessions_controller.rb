@@ -11,9 +11,11 @@ class SessionsController < ApplicationController
         redirect_back_or @user
       else
         message  = "Account not activated. "
-        message += "Check your email for the activation link."
+        message += "Check your email for the activation link or click link below to resend."
+        # message += view_context.link_to "Resend", new_account_activation_url(email: @user.email)
         flash[:warning] = message
-        redirect_to root_url
+        # redirect_to login_url
+        render 'new'
       end
     else
       # create an error message
