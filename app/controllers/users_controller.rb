@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     redirect_to root_url and return unless @user.activated
 	end
 
+    # this block is working
 	def create
 		@user = User.new(user_params)
 		if @user.save
@@ -26,7 +27,34 @@ class UsersController < ApplicationController
 		else
         render 'new'
 		end
+
+  # not working and not worth pursuing
+  #   @user = Users::Signup.run!(user_params)
+  #   if @user.valid?
+  #     flash[:info] = "Please check your email to activate your account."
+  #     redirect_to root_url
+  #   else
+  #     render 'new'
+  #   end
+
 	end
+
+  # example from their docs - https://github.com/cypriss/mutations#example - not working, something like this is what I want
+  # def create
+  #   outcome = Users::Signup.run(user_params)
+  #
+  #   # Then check to see if it worked:
+  #   if outcome.success?
+  #     # render json: {message: "Great success, #{outcome.result.name}!"}
+  #     flash[:info] = "Please check your email to activate your account."
+  #     redirect_to root_url
+  #   else
+  #     # binding.pry
+  #     # render json: outcome.errors.symbolic, status: 422
+  #     # flash = outcome.errors
+  #     render 'new'
+  #   end
+  # end
 
 	def edit
 	  @user = User.find(params[:id])
@@ -55,7 +83,7 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:name, :email, :password,
-		                           :password_confirmation)
+		                           :password_confirmation).symbolize_keys
 		end
 
     ## MOVED TO APPLICATION CONTROLLER ##
