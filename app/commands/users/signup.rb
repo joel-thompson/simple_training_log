@@ -1,30 +1,39 @@
-  # Define a command that signs up a user.
-
-
-  ### WIP THIS WILL NOT RUN
-
-
 module Users
   class Signup < Mutations::Command
 
     # These inputs are required
     required do
-      # string :email, matches: EMAIL_REGEX
+      string :email
       string :name
+      string :password
+      string :password_confirmation
     end
 
     # These inputs are optional
     optional do
-      # boolean :newsletter_subscribe
+      boolean :activated, default: false
+      boolean :admin, default: false
     end
 
     # The execute method is called only if the inputs validate. It does your business action.
     def execute
-      puts "i like pizza and " + name
-      # user = User.create!(inputs)
-      # NewsletterSubscriptions.create(email: email, user_id: user.id) if newsletter_subscribe
-      # UserMailer.async(:deliver_welcome, user.id)
-      # user
+      user = User.new(
+        email: email,
+        name: name,
+        password: password,
+        password_confirmation: password_confirmation,
+        admin: admin
+      )
+
+      if user.save
+        activated ? user.activate : user.send_activation_email
+      else
+        user.errors.to_hash_array.each do |error|
+          add_error(error[:key], error[:detail], error[:message])
+        end
+      end
+
     end
+
   end
 end
