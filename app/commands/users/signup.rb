@@ -17,7 +17,7 @@ module Users
 
     # The execute method is called only if the inputs validate. It does your business action.
     def execute
-      user = User.new(
+      user = User.create!(
         email: email,
         name: name,
         password: password,
@@ -25,7 +25,7 @@ module Users
         admin: admin
       )
 
-      if user.save
+      if user.valid?
         activated ? user.activate : user.send_activation_email
       else
         user.errors.to_hash_array.each do |error|
