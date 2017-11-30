@@ -1,5 +1,5 @@
 module Errors
-  # could probably eventually just extend the errors class
+  # not really used anymore as it's part of the activemodel::errors class now
   def self.activemodel_to_hash_array(errors)
     keys = errors.keys
     details = errors.details
