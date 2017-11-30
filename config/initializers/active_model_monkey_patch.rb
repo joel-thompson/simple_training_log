@@ -13,5 +13,10 @@ class ActiveModel::Errors
     end
     hash_array
   end
-  
+
+  def add_mutation_errors(errors)
+    return if !errors.present?
+    errors.symbolic.each { |key, value| add(key, value) }
+  end
+
 end

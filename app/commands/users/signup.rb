@@ -17,7 +17,7 @@ module Users
 
     # The execute method is called only if the inputs validate. It does your business action.
     def execute
-      user = User.create!(
+      user = User.create(
         email: email,
         name: name,
         password: password,
@@ -28,12 +28,10 @@ module Users
       if user.valid?
         activated ? user.activate : user.send_activation_email
       else
-        user.errors.to_hash_array.each do |error|
-          add_error(error[:key], error[:detail], error[:message])
-        end
+        add_validation_errors(user.errors)
       end
+      user
 
     end
-
   end
 end

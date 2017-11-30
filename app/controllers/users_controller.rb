@@ -43,8 +43,9 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      @user = User.new
-      outcome.errors.symbolic.each { |key, value| @user.errors.add(key, value) }
+      # this allows me to have additional signup validations in the command, then display them to the user's form. while also not losing the users inputs
+      @user = User.new(user_params)
+      @user.errors.add_mutation_errors(outcome.errors)
       render 'new'
     end
   end
