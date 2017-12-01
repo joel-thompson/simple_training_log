@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120012612) do
+ActiveRecord::Schema.define(version: 20171202010359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "martial_arts", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "occurred_at"
+    t.text     "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text     "content"
@@ -23,6 +31,26 @@ ActiveRecord::Schema.define(version: 20171120012612) do
     t.string   "picture"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
     t.index ["user_id"], name: "index_microposts_on_user_id", using: :btree
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.string   "partner_name"
+    t.integer  "submissions"
+    t.text     "notes"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "martial_art_id"
+    t.index ["martial_art_id"], name: "index_rounds_on_martial_art_id", using: :btree
+  end
+
+  create_table "techniques", force: :cascade do |t|
+    t.string   "name"
+    t.text     "details"
+    t.text     "notes"
+    t.integer  "martial_art_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["martial_art_id"], name: "index_techniques_on_martial_art_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,4 +70,6 @@ ActiveRecord::Schema.define(version: 20171120012612) do
   end
 
   add_foreign_key "microposts", "users"
+  add_foreign_key "rounds", "martial_arts"
+  add_foreign_key "techniques", "martial_arts"
 end
