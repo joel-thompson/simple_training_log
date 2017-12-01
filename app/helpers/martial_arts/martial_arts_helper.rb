@@ -1,0 +1,2 @@
+module MartialArts::MartialArtsHelper
+end
