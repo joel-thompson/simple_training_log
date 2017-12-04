@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :martial_arts, class_name: "MartialArts::MartialArt"
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 

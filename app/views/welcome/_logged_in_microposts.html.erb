@@ -4,9 +4,11 @@
       <%= render 'shared/user_info' %>
     </section>
     <section class="micropost_form">
-      <%= link_to "Martial Arts Entry", new_martial_art_path, class: "btn btn-primary" %>
+      <%= render 'shared/micropost_form' %>
     </section>
-
   </aside>
-
+  <div class="col-md-8">
+    <h3>Micropost Feed</h3>
+    <%= render 'shared/feed' %>
+  </div>
 </div>

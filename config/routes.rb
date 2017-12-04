@@ -22,4 +22,17 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit, :new]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
+
+
+  # martial arts routing
+  # get '/martial_arts/new', to: 'martial_arts/martial_arts#new'
+
+  # namespace :martial_arts do
+  #   resources :martial_arts
+  # end
+
+  scope module: :martial_arts do
+    resources :martial_arts
+  end
+
 end
