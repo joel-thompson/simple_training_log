@@ -2,7 +2,8 @@ module MartialArts
   class Create < Mutations::Command
 
     required do
-      string :friendly_type
+      string :type
+      duck :user
     end
 
     optional do
@@ -11,12 +12,13 @@ module MartialArts
     end
 
     def validate
-      add_error(:friendly_type, :invalid, "is not a valid type") unless valid_friendly_type?
+      add_error(:type, :invalid, "is not a valid type") unless valid_type?
     end
 
     def execute
       martial_art = MartialArts::MartialArt.new(
-        type: MartialArts.get_type(friendly_type),
+        user: user,
+        type: type,
         occurred_at: occurred_at,
         notes: notes
       )
@@ -27,8 +29,8 @@ module MartialArts
       end
     end
 
-    def valid_friendly_type?
-      MartialArts.available_friendly_types.include? friendly_type
+    def valid_type?
+      MartialArts.available_types.include? type
     end
 
   end

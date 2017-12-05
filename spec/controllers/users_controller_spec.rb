@@ -21,8 +21,8 @@ RSpec.describe UsersController, type: :controller do
       expect(@other_user.admin?).to eq false
 
       put :update, params: { id: @other_user.id , user: {
-                                                  password:              User.digest('password'),
-                                                  password_confirmation: User.digest('password'),
+                                                  password:              "123412345",
+                                                  password_confirmation: "123412345",
                                                   admin: true
                             } }
 
@@ -47,6 +47,17 @@ RSpec.describe UsersController, type: :controller do
       expect{
         delete :destroy, params: { id: @other_user.id }
       }.to change{User.count}.by(-1)
+    end
+
+    it "should send activation email when creating" do
+      expect(UserMailer).to receive_message_chain(:account_activation, :deliver_now)
+      post :create, params: { user: {
+                                name: "mailtest",
+                                email: "mail@test.com",
+                                password:              "12341234",
+                                password_confirmation: "12341234"
+                              }
+                            }
     end
 
   end

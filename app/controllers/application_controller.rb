@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  require 'will_paginate/array'
+
   private
 
   # Confirms a logged-in user.

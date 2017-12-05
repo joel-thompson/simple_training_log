@@ -22,5 +22,9 @@ describe MartialArts do
     expect(MartialArts.available_friendly_types).to eq(friendly_types)
   end
 
+  it "uses relative model naming" do
+    expect(MartialArts.use_relative_model_naming?).to eq(true)
+  end
+
 
 end
