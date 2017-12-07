@@ -1,8 +1,8 @@
 module MartialArts
   class MartialArt < ApplicationRecord
 
-    has_many :rounds
-    has_many :techniques
+    has_many :rounds, dependent: :destroy
+    has_many :techniques, dependent: :destroy
 
     belongs_to :user
 

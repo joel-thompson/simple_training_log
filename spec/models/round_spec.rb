@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.describe Round, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
 
+  fixtures :users
   fixtures :martial_arts
   set_fixture_class 'martial_arts' => MartialArts::MartialArt
 
   before do
-    @base = martial_arts(:base)
+    @joel = users(:joel)
     @bjj = martial_arts(:jiu_jitsu)
+    @bjj.user = @joel
 
     @roll = @bjj.rounds.build(
       partner_name: "chris",
@@ -37,6 +39,13 @@ RSpec.describe Round, type: :model do
     it "should not have a long notes" do
       @roll.notes = "a" * 1001
       expect(@roll.valid?).to eql(false)
+    end
+
+    it "is destroyed with the martial art" do
+      @bjj.save
+      expect{
+        @bjj.destroy
+      }.to change{Round.count}.by(-1)
     end
 
   end
