@@ -73,10 +73,16 @@ class MartialArts::MartialArtsController < ApplicationController
       return nil unless martial_art_params["occurred_at(1i)"].present? &&
                         martial_art_params["occurred_at(2i)"].present? &&
                         martial_art_params["occurred_at(3i)"].present?
-                        
+
       str = martial_art_params["occurred_at(1i)"]
       str += "-" + martial_art_params["occurred_at(2i)"]
       str += "-" + martial_art_params["occurred_at(3i)"]
+
+      time_now_string_array = Time.zone.now.to_s.split(" ")
+
+      str += " " + time_now_string_array[1]
+      str += " " + time_now_string_array[2]
+
       DateTime.parse(str)
     end
 
