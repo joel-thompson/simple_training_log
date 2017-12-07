@@ -17,24 +17,14 @@ class UsersController < ApplicationController
     redirect_to root_url and return unless @user.activated
 	end
 
-
   def create
-    outcome = Users::Signup.run(
-      email: user_params[:email],
-      name: user_params[:name],
-      password: user_params[:password],
-      password_confirmation: user_params[:password_confirmation],
-    )
-    if outcome.success?
-      @user = outcome.result
+		@user = User.new(user_params)
+		if @user.save
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
-    else
-      # this allows me to have additional signup validations in the command, then display them to the user's form. while also not losing the users inputs
-      @user = User.new(user_params)
-      @user.errors.add_mutation_errors(outcome.errors)
+		else
       render 'new'
-    end
+		end
   end
 
 	def edit
@@ -44,12 +34,10 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 
-			# Update successful
 		if @user.update_attributes(user_params)
 			flash[:success] = "Profile updated"
 			redirect_to @user
-
-		else  # Update unsuccessful
+		else
 			render 'edit'
 		end
 	end

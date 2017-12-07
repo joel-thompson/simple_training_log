@@ -1,6 +1,7 @@
 class MartialArts::MartialArtsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user,   only: [:edit, :update, :destroy, :show]
+  before_action :get_choices, only: [:new, :edit, :create]
 
   def index
     redirect_to root_url
@@ -8,24 +9,19 @@ class MartialArts::MartialArtsController < ApplicationController
 
   def new
     @martial_art = MartialArts::MartialArt.new
-    @choices = MartialArts.choices
+
   end
 
   def create
-    outcome = MartialArts::Create.run(
-      user: current_user,
+    @martial_art = current_user.martial_arts.new(
       type: martial_art_params[:type],
-      occurred_at: occured_at_datetime,
-      notes: martial_art_params[:notes]
+      notes: martial_art_params[:notes],
+      occurred_at: occured_at_datetime
     )
-    if outcome.success?
-      @martial_art = outcome.result
+    if @martial_art.save
       flash[:info] = "Saved!"
       redirect_to root_url
     else
-      # this allows me to have additional signup validations in the command, then display them to the user's form. while also not losing the users inputs
-      @martial_art = MartialArts::MartialArt.new(martial_art_params)
-      @martial_art.errors.add_mutation_errors(outcome.errors)
       render 'new'
     end
   end
@@ -42,7 +38,7 @@ class MartialArts::MartialArtsController < ApplicationController
 
   def edit
     #code
-    @choices = MartialArts.choices
+    # @choices = MartialArts.choices
   end
 
   def update
@@ -84,6 +80,10 @@ class MartialArts::MartialArtsController < ApplicationController
       str += " " + time_now_string_array[2]
 
       DateTime.parse(str)
+    end
+
+    def get_choices
+      @choices = MartialArts.choices
     end
 
 end
