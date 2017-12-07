@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :martial_arts, class_name: "MartialArts::MartialArt"
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -75,6 +76,14 @@ class User < ApplicationRecord
   # See "Following users" for the full implementation.
   def feed
     Micropost.where("user_id = ?", id)
+  end
+
+  def all_entries
+    entries = []
+    entries << martial_arts
+
+    entries.flatten!
+    entries.sort_by { |item| item.occurred_at }.reverse!
   end
 
 

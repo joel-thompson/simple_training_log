@@ -1,0 +1,19 @@
+<%= form_for(@martial_art, as: :martial_art,
+                           url: form_path) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :type %>
+  <%= f.select(:type) do %>
+    <% @choices.each do |c| -%>
+      <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
+
+  <%= f.label :occurred %>
+  <%= f.date_select :occurred_at, class: 'form-control' %>
+
+  <%= f.label :notes %>
+  <%= f.text_area :notes, class: 'form-control', rows: 20 %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
