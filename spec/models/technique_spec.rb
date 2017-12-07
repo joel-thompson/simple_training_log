@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Technique, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
 
+  fixtures :users
   fixtures :martial_arts
   set_fixture_class 'martial_arts' => MartialArts::MartialArt
 
   before do
-    @base = martial_arts(:base)
+    @joel = users(:joel)
     @bjj = martial_arts(:jiu_jitsu)
+    @bjj.user = @joel
 
     @triangle = @bjj.techniques.build(
       name: "triangle",
@@ -47,6 +48,13 @@ RSpec.describe Technique, type: :model do
     it "should not have a long notes" do
       @triangle.notes = "a" * 1001
       expect(@triangle.valid?).to eql(false)
+    end
+
+    it "should be destroyed with user" do
+      @bjj.save
+      expect{
+        @bjj.destroy
+      }.to change{Technique.count}.by(-1)
     end
 
   end
