@@ -2,6 +2,7 @@ class MartialArts::MartialArtsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user,   only: [:edit, :update, :destroy, :show]
   before_action :get_choices, only: [:new, :edit, :create]
+  before_action :get_time_choices, only: [:new, :edit, :create]
 
   def index
     redirect_to root_url
@@ -9,15 +10,10 @@ class MartialArts::MartialArtsController < ApplicationController
 
   def new
     @martial_art = MartialArts::MartialArt.new
-
   end
 
   def create
-    @martial_art = current_user.martial_arts.new(
-      type: martial_art_params[:type],
-      notes: martial_art_params[:notes],
-      occurred_at: occured_at_datetime
-    )
+    @martial_art = current_user.martial_arts.new(martial_art_params)
     if @martial_art.save
       flash[:info] = "Saved!"
       redirect_to root_url
@@ -33,12 +29,9 @@ class MartialArts::MartialArtsController < ApplicationController
   end
 
   def show
-    #code
   end
 
   def edit
-    #code
-    # @choices = MartialArts.choices
   end
 
   def update
@@ -57,6 +50,7 @@ class MartialArts::MartialArtsController < ApplicationController
   private
 
 		def martial_art_params
+      set_params_occurred_at_datetime
 			params.require(:martial_art).permit(:type, :occurred_at, :notes)
 		end
 
@@ -65,25 +59,12 @@ class MartialArts::MartialArtsController < ApplicationController
       redirect_to root_url if @martial_art.nil?
     end
 
-    def occured_at_datetime
-      return nil unless martial_art_params["occurred_at(1i)"].present? &&
-                        martial_art_params["occurred_at(2i)"].present? &&
-                        martial_art_params["occurred_at(3i)"].present?
-
-      str = martial_art_params["occurred_at(1i)"]
-      str += "-" + martial_art_params["occurred_at(2i)"]
-      str += "-" + martial_art_params["occurred_at(3i)"]
-
-      time_now_string_array = Time.zone.now.to_s.split(" ")
-
-      str += " " + time_now_string_array[1]
-      str += " " + time_now_string_array[2]
-
-      DateTime.parse(str)
-    end
-
     def get_choices
       @choices = MartialArts.choices
+    end
+
+    def get_time_choices
+      @time_choices = Entries.times
     end
 
 end

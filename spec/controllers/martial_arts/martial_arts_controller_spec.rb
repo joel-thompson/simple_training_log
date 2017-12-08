@@ -71,8 +71,7 @@ RSpec.describe MartialArts::MartialArtsController, type: :controller do
       expect{
         post :create, params: {
           martial_art: {
-            notes: "bar",
-            type: "MartialArts::MartialArt"
+            notes: 'note'
           }
         }
       }.to change{MartialArts::MartialArt.count}.by(1)
@@ -87,6 +86,18 @@ RSpec.describe MartialArts::MartialArtsController, type: :controller do
         }
       }
       expect(@martial_art_saved.reload.notes).to eq("updated")
+    end
+
+    it "updates a martial_art with a time" do
+      log_in_as @user
+      put :update, params: {
+        id: @martial_art_saved.id,
+        martial_art: {
+          date: { occurred_at: '' },
+          time: { occurred_at: 'now' }
+        }
+      }
+      expect(@martial_art_saved.reload.occurred_at.today?).to eq(true)
     end
 
   end

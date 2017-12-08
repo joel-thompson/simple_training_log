@@ -1,9 +1,7 @@
 module MartialArts
 
-
-
   MARTIAL_ARTS_FRIENDLY_TYPES = ["Jiu Jitsu", "Other"].freeze
-  MARTIAL_ARTS_TYPES = ["MartialArts::JiuJitsu", "MartialArts::MartialArt"]
+  MARTIAL_ARTS_TYPES = ["MartialArts::JiuJitsu", "MartialArts::MartialArt"].freeze
 
   def self.get_type(friendly_type)
     return nil unless MARTIAL_ARTS_FRIENDLY_TYPES.include? friendly_type
@@ -28,7 +26,6 @@ module MartialArts
     MARTIAL_ARTS_FRIENDLY_TYPES.zip(MARTIAL_ARTS_TYPES).each do |a, b|
       array << [a,b]
     end
-
   end
 
 end

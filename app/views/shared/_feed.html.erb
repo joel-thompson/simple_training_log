@@ -1,6 +1,6 @@
 <% if @feed_items.any? %>
-  <ol class="entries">
+  <ul class="entries">
     <%= render @feed_items %>
-  </ol>
-  <%= will_paginate @feed_items, renderer: BootstrapPagination::Rails %>
+  </ul>
+  <%= will_paginate @feed_items, renderer: BulmaPagination::Rails %>
 <% end %>

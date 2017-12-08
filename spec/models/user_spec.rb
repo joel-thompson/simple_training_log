@@ -8,6 +8,9 @@ RSpec.describe User, type: :model do
   before do
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar",
               password_confirmation: "foobar")
+
+    @saved_user = User.create(name: "Saved", email: "saved@example.com", password: "foobar",
+              password_confirmation: "foobar")
   end
 
   describe "user" do
@@ -41,7 +44,6 @@ RSpec.describe User, type: :model do
 
       valid_addresses.each do |valid_address|
   			@user.email = valid_address
-  			# assert @user.valid?, "#{valid_address.inspect} should be valid"
         expect(@user.valid?).to eql(true)
   		end
     end
@@ -52,7 +54,6 @@ RSpec.describe User, type: :model do
 
       invalid_addresses.each do |invalid_address|
         @user.email = invalid_address
-        # assert @user.valid?, "#{valid_address.inspect} should be valid"
         expect(@user.valid?).to eql(false)
       end
     end
@@ -61,7 +62,6 @@ RSpec.describe User, type: :model do
       duplicate_user = @user.dup
       duplicate_user.email = @user.email.downcase
       @user.save
-      # assert_not duplicate_user.valid?
       expect(duplicate_user.valid?).to eql(false)
     end
 
@@ -69,7 +69,6 @@ RSpec.describe User, type: :model do
       test_email = "USER@EXAMPLE.COM"
       @user.email = test_email
       @user.save
-      # assert_equal test_email.downcase, @user.reload.email
       expect(@user.reload.email).to eql(test_email.downcase)
     end
 
@@ -80,6 +79,15 @@ RSpec.describe User, type: :model do
 
     it "does not authenticate a nil digest" do
       expect(@user.authenticated?(:remember, '')).to eql(false)
+    end
+
+    describe "when listing entries" do
+
+      # is not currently testing for the order returned
+      it "lists all entries" do
+        sesh = @saved_user.martial_arts.create
+        expect(@saved_user.all_entries).to include(sesh)
+      end
     end
 
 

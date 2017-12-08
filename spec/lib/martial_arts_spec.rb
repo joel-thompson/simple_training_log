@@ -26,5 +26,9 @@ describe MartialArts do
     expect(MartialArts.use_relative_model_naming?).to eq(true)
   end
 
+  it "gives the choices" do
+    choices = [["Jiu Jitsu", "MartialArts::JiuJitsu"], ["Other", "MartialArts::MartialArt"]]
+    expect(MartialArts.choices).to eq choices
+  end
 
 end
