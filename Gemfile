@@ -36,11 +36,11 @@ gem 'jbuilder', '~> 2.5'
 
 # stuff I've added
 gem 'bcrypt'
-gem 'bootstrap-sass', '3.3.7'
+# gem 'bootstrap-sass', '3.3.7'
 gem 'rails-controller-testing'
 gem 'faker',  '1.8.4'
 gem 'will_paginate', '3.1.6'
-gem 'will_paginate-bootstrap', '1.0.1'
+# gem 'will_paginate-bootstrap', '1.0.1'
 gem 'rubocop', '~> 0.50.0', require: false
 gem 'pry'
 gem 'pry-rails'
@@ -48,6 +48,9 @@ gem 'carrierwave', '1.1.0'
 gem 'mini_magick', '4.8.0'
 gem 'fog', '1.42.0'
 gem 'mutations'
+gem "bulma-rails", "~> 0.6.1"
+gem 'will_paginate-bulma'
+gem 'font-awesome-sass', '~> 4.7.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

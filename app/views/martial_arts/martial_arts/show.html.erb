@@ -1,21 +1,14 @@
-
-
 <% provide(:title, @martial_art.friendly_type) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @martial_art.friendly_type %>
-      </h1>
-    </section>
-  </aside>
-</div>
+
+<section class="section">
+
+<h1 class='subtitle'> <%= @martial_art.friendly_type %> </h1>
+
 
 <span class="timestamp">
-  Performed <%= time_ago_in_words(@martial_art.occurred_at) %> ago.
+  <%= when_text(@martial_art.occurred_at) %>
 </span>
-
-
+<br><br>
 <aside>
   <section class="content">
     <% if @martial_art.notes.present? %>
@@ -25,11 +18,11 @@
     <% end %>
   </section>
 </aside>
-
-
-
+<br><br>
 <% if current_user?(@martial_art.user) %>
-  <%= link_to "edit", edit_martial_art_path(@martial_art), class: "btn btn-primary" %>
+  <%= link_to "edit", edit_martial_art_path(@martial_art), class: "button is-link" %>
   <%= link_to "delete", martial_art_path(@martial_art), method: :delete,
-                                   data: { confirm: "You sure?" }, class: "btn btn-primary" %>
+                                   data: { confirm: "You sure?" }, class: "button is-link" %>
 <% end %>
+
+</section>

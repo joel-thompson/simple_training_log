@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MartialArts::MartialArt, type: :model do
-  
+
     fixtures :users
 
   before do
@@ -34,6 +34,13 @@ RSpec.describe MartialArts::MartialArt, type: :model do
       expect{
         @user.destroy
       }.to change{MartialArts::MartialArt.count}.by(-1)
+    end
+
+    it "sets a default occurred_at" do
+      newsesh = @user.martial_arts.create(
+        notes: "had a great time"
+      )
+      expect(newsesh.reload.occurred_at.today?).to eq(true)
     end
 
   end

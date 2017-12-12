@@ -84,6 +84,11 @@ class User < ApplicationRecord
     entries << martial_arts
 
     entries.flatten!
+    entries.select! { |e| e.occurred_at.present? }
+
+    # prevents future events from being shown
+    # entries.select! { |e| e.occurred_at < DateTime.now.utc}
+
     entries.sort_by { |item| item.occurred_at }.reverse!
   end
 

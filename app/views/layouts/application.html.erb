@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= full_title(yield(:title)) %></title>
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <!-- <div class="alert alert-<%= message_type %>"><%= message %></div> -->
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% if flash.any? %>
+        <section class="section">
+          <div class="columns is-centered">
+            <div class="column is-one-third">
+              <% flash.each do |message_type, message| %>
+                <%= content_tag(:div, message, class: "notification is-#{message_type}") %>
+              <% end %>
+            </div>
+          </div>
+        </section>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
-    </div>
   </body>
 </html>
