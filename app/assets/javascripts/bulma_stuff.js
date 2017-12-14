@@ -23,3 +23,11 @@ document.addEventListener("turbolinks:load", function () {
   }
 
 });
+
+$(document).on('click', '.notification > button.delete', function() {
+    $(this).parent().addClass('is-hidden').remove();
+    if ($('.flash-notif').length == 0) {
+      $('#flash-notif-section').addClass('is-hidden').remove();
+    }
+    return false;
+});
