@@ -6,9 +6,11 @@ This repo uses scripts to set up, taken from [github unified scripts](https://gi
 
 Before running any of these scripts it is assumed the following is installed:
 
+```
 ruby (possibly with rbenv or RVM)
 bundler
 postgres
+```
 
 If those are installed the dependencies and database can be set up by running:
 
