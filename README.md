@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Set up
 
-Things you may want to cover:
+This repo uses scripts to set up, taken from [github unified scripts](https://githubengineering.com/scripts-to-rule-them-all/)
 
-* Ruby version
+Before running any of these scripts it is assumed the following is installed:
 
-* System dependencies
+ruby (possibly with rbenv or RVM)
+bundler
+postgres
 
-* Configuration
+If those are installed the dependencies and database can be set up by running:
 
-* Database creation
+```shell
+script/bootstrap
+script/setup
+```
 
-* Database initialization
+Other commands available:
 
-* How to run the test suite
+```shell
+script/update # updates dependencies and runs db migrations
+script/console # starts a rails console
+script/server # starts the rails server
+script/test # runs the test suite
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Deployment
 
-* Deployment instructions
+Anything merged into master is automatically deployed via Heroku. Pull requests should be used, and CircleCI tests need to pass in order to merge.
 
-* ...
+The app is available at:
+www.loggingprogress.com (redirects to heroku subdomain currently)
