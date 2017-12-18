@@ -1,0 +1,32 @@
+<%= form_for(@round) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= hidden_field_tag :martial_art_id, @martial_art.id %>
+
+  <div class="field">
+    <%= f.label :partner_name, class: 'label' %>
+    <div class="control">
+      <%= f.text_field :partner_name, class: 'input', type: 'text', placeholder: "e.g. chris" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :submissions, class: 'label' %>
+    <div class="control">
+      <%= f.number_field :submissions, class: 'input', type: 'number', placeholder: "e.g. 1" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes, class: 'label' %>
+    <div class="control">
+      <%= f.text_area :notes, class: 'textarea', rows: 5, placeholder: "e.g. seems easy when mounted" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.submit yield(:button_text), class: "button is-link" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<div class="content" id="technique-<%= technique.id %>">
+  <%= technique.name %> -
+  <%= link_to "edit", edit_technique_path(technique, martial_art_id: @martial_art.id) %>
+  <%= link_to "delete", technique, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+  <br><br>
+  <%= simple_format(technique.details) %>
+  <%= simple_format(technique.notes) %>
+</div>

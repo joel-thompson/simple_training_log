@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-
-  # get 'password_resets/new'
-  #
-  # get 'password_resets/edit'
-
-  # get 'sessions/new'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 	root 'welcome#index'
@@ -23,16 +13,10 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
 
-
-  # martial arts routing
-  # get '/martial_arts/new', to: 'martial_arts/martial_arts#new'
-
-  # namespace :martial_arts do
-  #   resources :martial_arts
-  # end
-
   scope module: :martial_arts do
     resources :martial_arts
   end
 
+  resources :techniques
+  resources :rounds
 end

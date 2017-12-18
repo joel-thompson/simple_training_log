@@ -1,0 +1,9 @@
+<div class="content" id="round-<%= round.id %>">
+  <%= round.partner_name %> -
+  <%= link_to "edit", edit_round_path(round, martial_art_id: @martial_art.id) %>
+  <%= link_to "delete", round, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+  <br><br>
+  <%= simple_format(pluralize(round.submissions, "submission")) %>
+  <%= simple_format(round.notes) %>
+</div>

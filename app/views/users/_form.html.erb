@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :name, class: label %>
     <div class="control">
       <%= f.text_field :name, class: 'input', type: 'text' %>
     </div>

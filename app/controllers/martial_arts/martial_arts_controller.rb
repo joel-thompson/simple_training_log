@@ -29,6 +29,8 @@ class MartialArts::MartialArtsController < ApplicationController
   end
 
   def show
+    @techniques = @martial_art.techniques
+    @rounds = @martial_art.rounds
   end
 
   def edit
