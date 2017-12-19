@@ -10,6 +10,7 @@ class MartialArts::MartialArtsController < ApplicationController
 
   def new
     @martial_art = MartialArts::MartialArt.new
+    @default_time = @choices.first
   end
 
   def create
@@ -34,6 +35,7 @@ class MartialArts::MartialArtsController < ApplicationController
   end
 
   def edit
+    @default_time = Entries.get_occurred_string(@martial_art.occurred_at)
   end
 
   def update

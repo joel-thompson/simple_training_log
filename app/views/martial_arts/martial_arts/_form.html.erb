@@ -22,7 +22,7 @@
     <%= f.label "Occured Time", class: 'label' %>
     <div class="control">
       <div class="select">
-        <%= f.select(:occurred_at,  @time_choices, {}, {index: :time}) %>
+        <%= f.select(:occurred_at,  @time_choices, {:selected => @default_time}, {index: :time}) %>
       </div>
     </div>
   </div>
