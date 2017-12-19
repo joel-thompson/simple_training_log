@@ -3,7 +3,7 @@
 <section class="section">
   <div class="content">
     <h1 class='subtitle'> <%= @martial_art.friendly_type %> </h1>
-    <p><%= when_text(@martial_art.occurred_at) %></p>
+    <p><%= @martial_art.occurred_at.to_formatted_s(:short_ordinal) %></p>
   </div>
 
   <% if @martial_art.notes.present? %>
