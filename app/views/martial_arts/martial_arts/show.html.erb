@@ -4,6 +4,7 @@
   <div class="content">
     <h1 class='subtitle'> <%= @martial_art.friendly_type %> </h1>
     <p><%= @martial_art.occurred_at.to_formatted_s(:short_ordinal) %></p>
+    <p><%= pluralize(@martial_art.duration_in_seconds / 60, "minute") %></p>
   </div>
 
   <% if @martial_art.notes.present? %>

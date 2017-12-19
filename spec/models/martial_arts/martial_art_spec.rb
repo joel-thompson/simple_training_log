@@ -43,6 +43,13 @@ RSpec.describe MartialArts::MartialArt, type: :model do
       expect(newsesh.reload.occurred_at.today?).to eq(true)
     end
 
+    it "sets a default duration_in_seconds" do
+      newsesh = @user.martial_arts.create(
+        notes: "had a great time"
+      )
+      expect(newsesh.reload.duration_in_seconds).to eq(0)
+    end
+
   end
 
 end
