@@ -1,28 +1,46 @@
 <% provide(:title, @martial_art.friendly_type) %>
 
 <section class="section">
+  <div class="content">
+    <h1 class='subtitle'> <%= @martial_art.friendly_type %> </h1>
+    <p><%= when_text(@martial_art.occurred_at) %></p>
+  </div>
 
-<h1 class='subtitle'> <%= @martial_art.friendly_type %> </h1>
-
-
-<span class="timestamp">
-  <%= when_text(@martial_art.occurred_at) %>
-</span>
-<br><br>
-<aside>
-  <section class="content">
-    <% if @martial_art.notes.present? %>
+  <% if @martial_art.notes.present? %>
+    <div class="content">
       <strong>Notes:</strong>
       <br>
       <%= simple_format(@martial_art.notes) %>
-    <% end %>
-  </section>
-</aside>
-<br><br>
-<% if current_user?(@martial_art.user) %>
+    </div>
+  <% end %>
+
   <%= link_to "edit", edit_martial_art_path(@martial_art), class: "button is-link" %>
   <%= link_to "delete", martial_art_path(@martial_art), method: :delete,
                                    data: { confirm: "You sure?" }, class: "button is-link" %>
+</section>
+
+
+<% if @martial_art.rounds.any? || @martial_art.techniques.any? %>
+  <section class="section">
+    <div class="columns">
+      <% if @martial_art.techniques.any? %>
+        <div class="column is-one-third">
+          <strong>Techniques:</strong><br>
+          <%= render partial: "techniques/technique", collection: @techniques %>
+        </div>
+      <% end %>
+
+      <% if @martial_art.rounds.any? %>
+      <div class="column">
+        <strong>Rounds:</strong><br>
+        <%= render partial: "rounds/round", collection: @rounds %>
+      </div>
+      <% end %>
+    </div>
+  </section>
 <% end %>
 
+<section class="section">
+  <%= link_to "add technique", new_technique_path(martial_art_id: @martial_art.id), class: "button is-link" %>
+  <%= link_to "add round", new_round_path(martial_art_id: @martial_art.id), class: "button is-link" %>
 </section>
