@@ -16,7 +16,7 @@ class MartialArts::MartialArtsController < ApplicationController
     @martial_art = current_user.martial_arts.new(martial_art_params)
     if @martial_art.save
       flash[:info] = "Saved!"
-      redirect_to root_url
+      redirect_to martial_art_path(@martial_art)
     else
       render 'new'
     end
