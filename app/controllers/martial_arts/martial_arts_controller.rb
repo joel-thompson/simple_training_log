@@ -15,7 +15,7 @@ class MartialArts::MartialArtsController < ApplicationController
   def create
     @martial_art = current_user.martial_arts.new(martial_art_params)
     if @martial_art.save
-      flash[:info] = "Saved!"
+      flash[:success] = "Saved!"
       redirect_to martial_art_path(@martial_art)
     else
       render 'new'
