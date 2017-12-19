@@ -100,6 +100,17 @@ RSpec.describe MartialArts::MartialArtsController, type: :controller do
       expect(@martial_art_saved.reload.occurred_at.today?).to eq(true)
     end
 
+    it "applies the right math to the duration input" do
+      log_in_as @user
+      put :update, params: {
+        id: @martial_art_saved.id,
+        martial_art: {
+          duration_in_seconds: "60"
+        }
+      }
+      expect(@martial_art_saved.reload.duration_in_seconds).to eq(3600)
+    end
+
   end
 
 end

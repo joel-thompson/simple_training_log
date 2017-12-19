@@ -16,8 +16,8 @@ module MartialArts
     end
 
     private def default_values
-      self.occurred_at = Time.zone.now if occurred_at == nil
-      self.occurred_at = Time.zone.now if occurred_at == ""
+      self.occurred_at = Time.zone.now unless self.occurred_at.present?
+      self.duration_in_seconds = 0 unless self.duration_in_seconds.present?
     end
 
   end
