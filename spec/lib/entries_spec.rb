@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-describe MartialArts do
+describe Entries do
+
+  fixtures :users
 
   before do
     @options_friendly = ['Morning', 'Afternoon', 'Evening']
@@ -9,51 +11,81 @@ describe MartialArts do
     @options_friendly.zip(@options).each do |a, b|
       @times << [a,b]
     end
+    @user = users(:michael)
   end
 
   it "gives the right time options" do
     expect(Entries.times).to eq @times
   end
 
-  it "properly handles date and time" do
-    zone = Time.now.to_s.split(" ")[2]
-    control = ['2017-6-5', "07:00:00", zone].join(' ')
-    result_control = DateTime.parse(control).utc.to_s
+  describe "#sort_by_occurred!" do
 
-    date = '2017-6-5'
-    time = 'morning'
-    result_lib = Entries.date_and_time_handler(date, time)
+    it "correcly sorts by occurred_date when time is the same" do
+      first = @user.martial_arts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+      second = @user.martial_arts.create(
+        occurred_date: Date.yesterday,
+        occurred_time: 'morning'
+      )
+      entries = [second, first]
+      Entries.sort_by_occurred!(entries)
 
-    expect(result_lib).to eq result_control
-  end
-
-  describe "#get_occurred_string" do
-    it "returns the evening string correctly" do
-      zone = Time.now.to_s.split(" ")[2]
-      control = ['2017-6-5', "18:00:00", zone].join(' ')
-      occurred_at = DateTime.parse(control)
-
-      result = Entries.get_occurred_string(occurred_at)
-      expect(result).to eq('evening')
+      expect(entries.first).to eq first
+      expect(entries.second).to eq second
     end
-  end
 
-  it "returns the afternoon string correctly" do
-    zone = Time.now.to_s.split(" ")[2]
-    control = ['2017-6-5', "13:00:00", zone].join(' ')
-    occurred_at = DateTime.parse(control)
+    it "correctly sorts by occurred_date when time different" do
+      first = @user.martial_arts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+      second = @user.martial_arts.create(
+        occurred_date: Date.yesterday,
+        occurred_time: 'evening'
+      )
+      entries = [second, first]
+      Entries.sort_by_occurred!(entries)
 
-    result = Entries.get_occurred_string(occurred_at)
-    expect(result).to eq('afternoon')
-  end
+      expect(entries.first).to eq first
+      expect(entries.second).to eq second
+    end
 
-  it "returns the morning string correctly" do
-    zone = Time.now.to_s.split(" ")[2]
-    control = ['2017-6-5', "07:00:00", zone].join(' ')
-    occurred_at = DateTime.parse(control)
+    it "correctly sorts by occurred_time when date is the same" do
+      first = @user.martial_arts.create(
+        occurred_date: Date.today,
+        occurred_time: 'evening'
+      )
+      second = @user.martial_arts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+      entries = [second, first]
+      Entries.sort_by_occurred!(entries)
 
-    result = Entries.get_occurred_string(occurred_at)
-    expect(result).to eq('morning')
+      expect(entries.first).to eq first
+      expect(entries.second).to eq second
+    end
+
+    it "correctly sorts by created_at when date and time is the same" do
+      second = @user.martial_arts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+      first = @user.martial_arts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+      entries = [second, first]
+      Entries.sort_by_occurred!(entries)
+
+      expect(entries.first).to eq first
+      expect(entries.second).to eq second
+    end
+
+
+
   end
 
 end

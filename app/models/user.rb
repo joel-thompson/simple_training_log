@@ -82,14 +82,9 @@ class User < ApplicationRecord
   def all_entries
     entries = []
     entries << martial_arts
-
     entries.flatten!
-    entries.select! { |e| e.occurred_at.present? }
 
-    # prevents future events from being shown
-    # entries.select! { |e| e.occurred_at < DateTime.now.utc}
-
-    entries.sort_by { |item| item.occurred_at }.reverse!
+    Entries.sort_by_occurred!(entries)
   end
 
 

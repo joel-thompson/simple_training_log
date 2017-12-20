@@ -8,8 +8,7 @@ RSpec.describe MartialArts::MartialArt, type: :model do
     @user       = users(:michael)
     @other_user = users(:archer)
     @sesh = @user.martial_arts.new(
-      notes: "had a great time",
-      occurred_at: Time.zone.now
+      notes: "had a great time"
     )
 
     @badsesh = MartialArts::MartialArt.new
@@ -34,13 +33,6 @@ RSpec.describe MartialArts::MartialArt, type: :model do
       expect{
         @user.destroy
       }.to change{MartialArts::MartialArt.count}.by(-1)
-    end
-
-    it "sets a default occurred_at" do
-      newsesh = @user.martial_arts.create(
-        notes: "had a great time"
-      )
-      expect(newsesh.reload.occurred_at.today?).to eq(true)
     end
 
     it "sets a default duration_in_seconds" do

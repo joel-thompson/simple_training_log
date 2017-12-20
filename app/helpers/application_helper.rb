@@ -9,12 +9,4 @@ module ApplicationHelper
     end
   end
 
-  def when_text(occurred_at)
-    if occurred_at < DateTime.now
-      time_ago_in_words(occurred_at) + " ago"
-    else
-      "In " + time_ago_in_words(occurred_at)
-    end
-  end
-
 end

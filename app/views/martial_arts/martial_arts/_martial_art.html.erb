@@ -1,7 +1,7 @@
 <li id="martial_art-<%= martial_art.id %>">
   <%= link_to martial_art.friendly_type, martial_art_path(martial_art), class: "type" %> -
   <span class="timestamp">
-    <%= martial_art.occurred_at.to_formatted_s(:short_date) %>
+    <%= martial_art.occurred_date.to_s %>
   </span>
   <br>
   <span class="content">

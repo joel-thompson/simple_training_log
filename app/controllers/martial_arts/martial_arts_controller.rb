@@ -10,8 +10,8 @@ class MartialArts::MartialArtsController < ApplicationController
 
   def new
     @martial_art = MartialArts::MartialArt.new
-    @default_time = @choices.first
     @default_duration = ""
+    @default_date = Date.today.to_s
   end
 
   def create
@@ -36,8 +36,8 @@ class MartialArts::MartialArtsController < ApplicationController
   end
 
   def edit
-    @default_time = Entries.get_occurred_string(@martial_art.occurred_at)
     @default_duration = @martial_art.duration_in_seconds / 60
+    @default_date = @martial_art.occurred_date.to_s
   end
 
   def update
@@ -56,9 +56,10 @@ class MartialArts::MartialArtsController < ApplicationController
   private
 
 		def martial_art_params
-      set_params_occurred_at_datetime
-      params[:martial_art][:duration_in_seconds] = params[:martial_art][:duration_in_seconds].to_i * 60 if params[:martial_art][:duration_in_seconds].present?
-			params.require(:martial_art).permit(:type, :occurred_at, :notes, :duration_in_seconds)
+      if params[:martial_art].present? && params[:martial_art][:duration_in_seconds].present?
+        params[:martial_art][:duration_in_seconds] = params[:martial_art][:duration_in_seconds].to_i * 60
+      end
+      params.require(:martial_art).permit(:type, :occurred_time, :occurred_date, :notes, :duration_in_seconds)
 		end
 
     def correct_user

@@ -7,8 +7,7 @@ RSpec.describe MartialArts::JiuJitsu, type: :model do
 
   before do
     @sesh = MartialArts::JiuJitsu.new(
-      notes: "had a great time",
-      occurred_at: Time.zone.now
+      notes: "had a great time"
     )
   end
 
