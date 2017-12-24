@@ -1,47 +1,45 @@
 <% provide(:title, @martial_art.friendly_type) %>
+<% provide(:heading_title, @martial_art.friendly_type) %>
+<% provide(:heading_subtitle, time_and_date_text) %>
+<% provide(:heading_subsubtitle, duration_text) %>
 
 <section class="section">
-  <div class="content">
-    <h1 class='subtitle'> <%= @martial_art.friendly_type %> </h1>
-    <p><%= @martial_art.occurred_date.to_s(:short_ordinal) %> - <%= @martial_art.occurred_time %></p>
-    <p><%= pluralize(@martial_art.duration_in_seconds / 60, "minute") %></p>
-  </div>
 
   <% if @martial_art.notes.present? %>
     <div class="content">
-      <strong>Notes:</strong>
-      <br>
+      <p class="title is-5">Notes:</p>
       <%= simple_format(@martial_art.notes) %>
     </div>
   <% end %>
 
   <%= link_to "edit", edit_martial_art_path(@martial_art), class: "button is-link" %>
-  <%= link_to "delete", martial_art_path(@martial_art), method: :delete,
-                                   data: { confirm: "You sure?" }, class: "button is-link" %>
-</section>
 
+  <hr>
 
-<% if @martial_art.rounds.any? || @martial_art.techniques.any? %>
-  <section class="section">
+  <div class="buttons">
+    <%= link_to "add technique", new_technique_path(martial_art_id: @martial_art.id), class: "button is-link" %>
+    <%= link_to "add round", new_round_path(martial_art_id: @martial_art.id), class: "button is-link" %>
+  </div>
+
+  <% if @martial_art.rounds.any? || @martial_art.techniques.any? %>
     <div class="columns">
       <% if @martial_art.techniques.any? %>
-        <div class="column is-one-third">
-          <strong>Techniques:</strong><br>
+        <div class="column">
+          <p class="title is-5">Techniques:</p>
           <%= render partial: "techniques/technique", collection: @techniques %>
         </div>
       <% end %>
 
       <% if @martial_art.rounds.any? %>
       <div class="column">
-        <strong>Rounds:</strong><br>
+        <p class="title is-5">Rounds:</p>
         <%= render partial: "rounds/round", collection: @rounds %>
       </div>
       <% end %>
     </div>
-  </section>
-<% end %>
+  <% end %>
+  <hr>
 
-<section class="section">
-  <%= link_to "add technique", new_technique_path(martial_art_id: @martial_art.id), class: "button is-link" %>
-  <%= link_to "add round", new_round_path(martial_art_id: @martial_art.id), class: "button is-link" %>
+  <%= link_to "delete", martial_art_path(@martial_art), method: :delete,
+                                   data: { confirm: "You sure?" }, class: "button is-danger" %>
 </section>

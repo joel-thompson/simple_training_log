@@ -22,11 +22,11 @@ describe Entries do
 
     it "correcly sorts by occurred_date when time is the same" do
       first = @user.martial_arts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.parse("2017-5-6"),
         occurred_time: 'morning'
       )
       second = @user.martial_arts.create(
-        occurred_date: Date.yesterday,
+        occurred_date: Date.parse("2017-5-4"),
         occurred_time: 'morning'
       )
       entries = [second, first]
@@ -38,11 +38,11 @@ describe Entries do
 
     it "correctly sorts by occurred_date when time different" do
       first = @user.martial_arts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.parse("2017-5-6"),
         occurred_time: 'morning'
       )
       second = @user.martial_arts.create(
-        occurred_date: Date.yesterday,
+        occurred_date: Date.parse("2017-5-4"),
         occurred_time: 'evening'
       )
       entries = [second, first]
@@ -54,11 +54,11 @@ describe Entries do
 
     it "correctly sorts by occurred_time when date is the same" do
       first = @user.martial_arts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.parse("2017-5-6"),
         occurred_time: 'evening'
       )
       second = @user.martial_arts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.parse("2017-5-6"),
         occurred_time: 'morning'
       )
       entries = [second, first]
@@ -70,11 +70,11 @@ describe Entries do
 
     it "correctly sorts by created_at when date and time is the same" do
       second = @user.martial_arts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.parse("2017-5-6"),
         occurred_time: 'morning'
       )
       first = @user.martial_arts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.parse("2017-5-6"),
         occurred_time: 'morning'
       )
       entries = [second, first]

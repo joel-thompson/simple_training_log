@@ -1,6 +1,2 @@
-<% if @feed_items.any? %>
-  <ul class="entries">
-    <%= render @feed_items %>
-  </ul>
-  <%= will_paginate @feed_items, renderer: BulmaPagination::Rails %>
-<% end %>
+<%= render @feed_items %>
+<%= will_paginate @feed_items, renderer: BulmaPagination::Rails %>

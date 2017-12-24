@@ -1,19 +1,14 @@
 <section class="section">
   <div class="columns">
     <div class="column is-one-third">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <br>
-      <section class="martial_art_button">
         <%= link_to "Martial Arts Entry", new_martial_art_path, class: "button is-link" %>
-      </section>
     </div>
 
-    <div class="column">
-      <h3>Workout Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-
+    <% if @feed_items.any? %>
+      <div class="column">
+        <h4 class="title is-4">Workout Feed</h4>
+        <%= render 'shared/feed' %>
+      </div>
+    <% end %>
   </div>
 </section>

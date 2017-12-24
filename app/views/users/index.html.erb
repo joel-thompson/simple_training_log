@@ -1,13 +1,10 @@
-<% provide(:title, 'All users') %>
+<% provide(:title, 'All Users') %>
+<% provide(:heading_title, 'All Users') %>
 
 <section class="section">
-  <h1 class='subtitle'>All users</h1>
-
   <%= will_paginate @users, renderer: BulmaPagination::Rails%>
-
-  <ul class="users">
-    <%= render @users %>
-  </ul>
-
+  <br><br>
+  <%= render @users %>
+  <br>
   <%= will_paginate @users, renderer: BulmaPagination::Rails %>
 </section>

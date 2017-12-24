@@ -87,6 +87,13 @@ class User < ApplicationRecord
     Entries.sort_by_occurred!(entries)
   end
 
+  def first_name
+    self.name.blank? ? "" : self.name.split(" ")[0]
+  end
+
+  def last_name
+    self.name.blank? ? "" : self.name.split(" ")[1]
+  end
 
 	private
 

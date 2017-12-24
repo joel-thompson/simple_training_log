@@ -21,7 +21,7 @@
         <%= link_to "Users", users_path, class: "navbar-item" %>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            Account
+            <%= current_user.first_name %>
           </a>
           <div class="navbar-dropdown is-right">
             <%= link_to "Profile", current_user, class: "navbar-item" %>
@@ -36,3 +36,27 @@
     </div>
   </div>
 </nav>
+
+<section class="section" id="page-heading">
+  <div class="columns">
+    <div class="column">
+      <% if yield(:heading_title).present? %>
+        <h3 class="title is-3"><%= yield(:heading_title) %></h3>
+      <% else %>
+        <h3 class="title is-3">Logging Progress</h3>
+      <% end %>
+
+      <% if yield(:heading_subtitle).present? %>
+        <h5 class="subtitle is-5">
+          <%= yield(:heading_subtitle) %>
+          <% if yield(:heading_subsubtitle).present? %>
+            <br>
+            <%= yield(:heading_subsubtitle) %>
+          <% end %>
+        </h5>
+      <% end %>
+
+    </div>
+  </div>
+  <hr id="page-heading-hr">
+</section>
