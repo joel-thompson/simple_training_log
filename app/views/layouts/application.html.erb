@@ -12,7 +12,7 @@
       <% if flash.any? %>
         <section class="section" id="flash-notif-section">
           <div class="columns is-centered">
-            <div class="column is-one-third">
+            <div class="column is-two-thirds">
               <% flash.each do |message_type, message| %>
                 <div class="notification is-<%="#{message_type}"%> flash-notif">
                 <button class="delete"></button>

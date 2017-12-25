@@ -1,8 +1,7 @@
 <% provide(:title, "Forgot password") %>
+<% provide(:heading_title, "Forgot password") %>
 
 <section class="section">
-
-  <h1 class='subtitle'>Forgot password</h1>
 
   <div class="columns is-centered">
     <div class="column is-one-third">
@@ -10,7 +9,7 @@
       <%= form_for(:password_reset, url: password_resets_path) do |f| %>
 
       <div class="field">
-        <%= f.label :email %>
+        <%= f.label :email, class: 'label' %>
         <div class="control">
           <%= f.email_field :email, class: 'input', type: 'email' %>
         </div>
