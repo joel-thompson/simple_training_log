@@ -30,9 +30,30 @@
   </div>
 
   <div class="field">
+    <%= f.label :location, class: "label" %>
+    <div class="control">
+      <%= f.text_field :location, class: 'input', type: 'text', placeholder: "e.g. Berkeley" %>
+    </div>
+  </div>
+
+  <div class="field">
     <%= f.label :duration, class: 'label' %>
     <div class="control">
       <%= f.number_field :duration_in_seconds, class: 'input', type: 'number', placeholder: "e.g. 1", min: 0 %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :goal, class: 'label' %>
+    <div class="control">
+      <%= f.text_area :goal, class: 'textarea', rows: 5, placeholder: "e.g. armbar five times" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :goal_result, class: 'label' %>
+    <div class="control">
+      <%= f.text_area :goal_result, class: 'textarea', rows: 5, placeholder: "e.g. hit the armbar" %>
     </div>
   </div>
 

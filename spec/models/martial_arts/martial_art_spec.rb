@@ -8,7 +8,8 @@ RSpec.describe MartialArts::MartialArt, type: :model do
     @user       = users(:michael)
     @other_user = users(:archer)
     @sesh = @user.martial_arts.new(
-      notes: "had a great time"
+      notes: "had a great time",
+      duration_in_seconds: 60
     )
 
     @badsesh = MartialArts::MartialArt.new
@@ -35,11 +36,24 @@ RSpec.describe MartialArts::MartialArt, type: :model do
       }.to change{MartialArts::MartialArt.count}.by(-1)
     end
 
-    it "sets a default duration_in_seconds" do
-      newsesh = @user.martial_arts.create(
-        notes: "had a great time"
-      )
-      expect(newsesh.reload.duration_in_seconds).to eq(0)
+    describe "validation" do
+
+      it "doesn't have a goal_result without a goal" do
+        @badsesh.goal_result = "foo"
+        expect(@badsesh.valid?).to eq false
+      end
+
+      it "is valid with a goal and a goal result" do
+        @sesh.goal = "foo"
+        @sesh.goal_result = "bar"
+        expect(@sesh.valid?).to eq true
+      end
+
+      it "checks for bad times" do
+        @badsesh.occurred_time = "foo"
+        expect(@badsesh.valid?).to eq false
+      end
+
     end
 
   end

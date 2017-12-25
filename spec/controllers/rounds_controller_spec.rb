@@ -7,7 +7,9 @@ RSpec.describe RoundsController, type: :controller do
   before do
     @user = users(:michael)
     @other_user = users(:archer)
-    @martial_art = @user.martial_arts.create
+    @martial_art = @user.martial_arts.create(
+      duration_in_seconds: 120
+    )
     @round_saved = @martial_art.rounds.create(partner_name: "chris")
   end
 

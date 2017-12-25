@@ -1,10 +1,12 @@
 base:
   notes: "had a great time"
+  duration_in_seconds: 60
   created_at: <%= 10.minutes.ago %>
   updated_at: <%= 10.minutes.ago %>
 
 jiu_jitsu:
   notes: "triangle doing better"
+  duration_in_seconds: 60
   type: "MartialArts::JiuJitsu"
   created_at: <%= 10.minutes.ago %>
   updated_at: <%= 10.minutes.ago %>

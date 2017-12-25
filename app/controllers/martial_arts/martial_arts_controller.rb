@@ -55,9 +55,21 @@ class MartialArts::MartialArtsController < ApplicationController
 
 		def martial_art_params
       if params[:martial_art].present?
-        params[:martial_art][:duration_in_seconds] = params[:martial_art][:duration_in_seconds].to_i * 60
+        if params[:martial_art][:duration_in_seconds].present?
+          params[:martial_art][:duration_in_seconds] = params[:martial_art][:duration_in_seconds].to_i * 60
+        end
       end
-      params.require(:martial_art).permit(:type, :occurred_time, :occurred_date, :notes, :duration_in_seconds)
+
+      params.require(:martial_art).permit(
+        :type,
+        :occurred_time,
+        :occurred_date,
+        :notes,
+        :duration_in_seconds,
+        :goal,
+        :goal_result,
+        :location
+      )
 		end
 
     def correct_user

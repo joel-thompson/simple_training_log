@@ -8,10 +8,12 @@ module MartialArts::MartialArtsHelper
 
     @martial_art.occurred_date.to_s(:short_ordinal) +
       " - " +
-      @martial_art.occurred_time.capitalize      
+      @martial_art.occurred_time.capitalize
   end
 
-  def duration_text
-    pluralize(@martial_art.duration_in_seconds / 60, "minute")
+  def duration_and_location
+    string = pluralize(@martial_art.duration_in_minutes, "minute")
+    string += " at " + @martial_art.location if @martial_art.location.present?
+    string
   end
 end

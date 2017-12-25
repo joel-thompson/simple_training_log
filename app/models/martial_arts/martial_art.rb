@@ -10,10 +10,16 @@ module MartialArts
 
     validates :user, presence: true
     validate :valid_occurred_time
+    validate :valid_goal
+    validate :valid_duration
 
     def friendly_type
       return "Other" if type == nil
       type.split('::')[1].underscore.split('_').collect{|c| c.capitalize}.join(' ')
+    end
+
+    def duration_in_minutes
+      duration_in_seconds / 60
     end
 
     private def valid_occurred_time
@@ -21,9 +27,18 @@ module MartialArts
       errors.add(:occurred_time, "invalid time") unless Entries.valid_times.include? self.occurred_time
     end
 
+    private def valid_goal
+      if !self.goal.present? && self.goal_result.present?
+        errors.add(:goal_result, "not valid without goal")
+      end
+    end
+
+    private def valid_duration
+      errors.add(:duration, "cannot be blank") unless self.duration_in_seconds.present?
+    end
+
     # might want to be more mindful about these - would be easy to allow all bad input
     private def default_values
-      self.duration_in_seconds = 0 unless self.duration_in_seconds.present?
       self.occurred_date = Date.today unless self.occurred_date.present?
       self.occurred_time = "morning" unless self.occurred_time.present?
     end

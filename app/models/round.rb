@@ -7,9 +7,8 @@ class Round < ApplicationRecord
   delegate :user, to: :martial_art
 
   validates :martial_art, presence: true
-  validates :partner_name, length: { maximum: 50 }
+  validates :partner_name, presence: true, length: { maximum: 50 }
   validates :notes, length: { maximum: 1000 }
-
 
   private def default_values
     self.submissions = 0 if submissions == nil

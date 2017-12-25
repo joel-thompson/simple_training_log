@@ -1,9 +1,34 @@
 <% provide(:title, @martial_art.friendly_type) %>
 <% provide(:heading_title, @martial_art.friendly_type) %>
 <% provide(:heading_subtitle, time_and_date_text) %>
-<% provide(:heading_subsubtitle, duration_text) %>
+<% provide(:heading_subsubtitle, duration_and_location) %>
 
 <section class="section">
+
+  <div class="buttons">
+    <%= link_to "edit", edit_martial_art_path(@martial_art), class: "button is-link" %>
+    <%= link_to "add technique", new_technique_path(martial_art_id: @martial_art.id), class: "button is-link" %>
+    <%= link_to "add round", new_round_path(martial_art_id: @martial_art.id), class: "button is-link" %>
+  </div>
+
+  <hr>
+
+  <% if @martial_art.goal.present?%>
+    <div class="columns">
+      <div class="column">
+        <p class="title is-5">Goal:</p>
+        <%= simple_format(@martial_art.goal) %>
+      </div>
+
+
+      <% if @martial_art.goal_result.present? %>
+      <div class="column">
+        <p class="title is-5">Goal result:</p>
+        <%= simple_format(@martial_art.goal_result) %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <% if @martial_art.notes.present? %>
     <div class="content">
@@ -12,14 +37,7 @@
     </div>
   <% end %>
 
-  <%= link_to "edit", edit_martial_art_path(@martial_art), class: "button is-link" %>
-
   <hr>
-
-  <div class="buttons">
-    <%= link_to "add technique", new_technique_path(martial_art_id: @martial_art.id), class: "button is-link" %>
-    <%= link_to "add round", new_round_path(martial_art_id: @martial_art.id), class: "button is-link" %>
-  </div>
 
   <% if @martial_art.rounds.any? || @martial_art.techniques.any? %>
     <div class="columns">
@@ -42,4 +60,5 @@
 
   <%= link_to "delete", martial_art_path(@martial_art), method: :delete,
                                    data: { confirm: "You sure?" }, class: "button is-danger" %>
+
 </section>

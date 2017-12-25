@@ -85,7 +85,7 @@ RSpec.describe User, type: :model do
 
       # is not currently testing for the order returned
       it "lists all entries" do
-        sesh = @saved_user.martial_arts.create
+        sesh = @saved_user.martial_arts.create(duration_in_seconds: 60)
         expect(@saved_user.all_entries).to include(sesh)
       end
     end

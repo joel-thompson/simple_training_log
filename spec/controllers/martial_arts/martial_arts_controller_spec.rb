@@ -8,8 +8,12 @@ RSpec.describe MartialArts::MartialArtsController, type: :controller do
   before do
     @user = users(:michael)
     @other_user = users(:archer)
-    @martial_art_unsaved = @user.martial_arts.build
-    @martial_art_saved = @user.martial_arts.create
+    @martial_art_unsaved = @user.martial_arts.build(
+      duration_in_seconds: 60
+    )
+    @martial_art_saved = @user.martial_arts.create(
+      duration_in_seconds: 60
+    )
   end
 
   describe "Martial Arts Controller" do
@@ -71,7 +75,8 @@ RSpec.describe MartialArts::MartialArtsController, type: :controller do
       expect{
         post :create, params: {
           martial_art: {
-            notes: 'note'
+            notes: 'note',
+            duration_in_seconds: 1
           }
         }
       }.to change{MartialArts::MartialArt.count}.by(1)
