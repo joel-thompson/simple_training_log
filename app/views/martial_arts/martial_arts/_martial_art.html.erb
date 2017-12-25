@@ -1,11 +1,6 @@
-<li id="martial_art-<%= martial_art.id %>">
+<div class="content" id="martial_art-<%= martial_art.id %>">
   <%= link_to martial_art.friendly_type, martial_art_path(martial_art), class: "type" %> -
-  <span class="timestamp">
-    <%= martial_art.occurred_date.to_s %>
-  </span>
+  <%= martial_art.occurred_date.to_s %>
   <br>
-  <span class="content">
-    <%= simple_format(martial_art.notes) %>
-  </span>
-  <br>
-</li>
+  <%= simple_format(martial_art.notes) %>
+</div>

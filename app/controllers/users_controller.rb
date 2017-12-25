@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
 		else
+      flash[:danger] = "Unable to sign up."
       render 'new'
 		end
   end
