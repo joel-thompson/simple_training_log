@@ -23,11 +23,13 @@ describe Entries do
     it "correcly sorts by occurred_date when time is the same" do
       first = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-6"),
-        occurred_time: 'morning'
+        occurred_time: 'morning',
+        duration_in_seconds: 60
       )
       second = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-4"),
-        occurred_time: 'morning'
+        occurred_time: 'morning',
+        duration_in_seconds: 60
       )
       entries = [second, first]
       Entries.sort_by_occurred!(entries)
@@ -39,11 +41,13 @@ describe Entries do
     it "correctly sorts by occurred_date when time different" do
       first = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-6"),
-        occurred_time: 'morning'
+        occurred_time: 'morning',
+        duration_in_seconds: 60
       )
       second = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-4"),
-        occurred_time: 'evening'
+        occurred_time: 'evening',
+        duration_in_seconds: 60
       )
       entries = [second, first]
       Entries.sort_by_occurred!(entries)
@@ -55,11 +59,13 @@ describe Entries do
     it "correctly sorts by occurred_time when date is the same" do
       first = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-6"),
-        occurred_time: 'evening'
+        occurred_time: 'evening',
+        duration_in_seconds: 60
       )
       second = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-6"),
-        occurred_time: 'morning'
+        occurred_time: 'morning',
+        duration_in_seconds: 60
       )
       entries = [second, first]
       Entries.sort_by_occurred!(entries)
@@ -71,11 +77,13 @@ describe Entries do
     it "correctly sorts by created_at when date and time is the same" do
       second = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-6"),
-        occurred_time: 'morning'
+        occurred_time: 'morning',
+        duration_in_seconds: 60
       )
       first = @user.martial_arts.create(
         occurred_date: Date.parse("2017-5-6"),
-        occurred_time: 'morning'
+        occurred_time: 'morning',
+        duration_in_seconds: 60
       )
       entries = [second, first]
       Entries.sort_by_occurred!(entries)
