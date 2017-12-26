@@ -1,0 +1,7 @@
+<div class="content" id="body_weight_record-<%= body_weight_record.id %>">
+  <%= time_ago_in_words(body_weight_record.created_at).capitalize %>
+  ago -
+  <%= link_to "delete", body_weight_record, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+  <%= simple_format(body_weight_record.weight.to_s) %>
+</div>

@@ -1,6 +1,7 @@
 <div class="content" id="martial_art-<%= martial_art.id %>">
-  <%= link_to martial_art.friendly_type, martial_art_path(martial_art), class: "type" %> -
-  <%= martial_art.occurred_date.to_s %>
+  <%= link_to martial_art.friendly_type, martial_art_path(martial_art) %>
   <br>
-  <%= simple_format(martial_art.notes) %>
+  <%= time_and_date_text(martial_art) %>
+  <br>
+  <%= duration_and_location(martial_art) %>
 </div>

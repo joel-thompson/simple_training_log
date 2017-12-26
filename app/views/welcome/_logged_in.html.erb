@@ -1,12 +1,12 @@
 <section class="section">
   <div class="columns">
     <div class="column is-one-third">
-        <%= link_to "Martial Arts Entry", new_martial_art_path, class: "button is-link" %>
+      <%= render 'stats_box' %>
+      <%= render 'add_button_box' %>
     </div>
 
     <% if @feed_items.any? %>
       <div class="column">
-        <h4 class="title is-4">Workout Feed</h4>
         <%= render 'shared/feed' %>
       </div>
     <% end %>

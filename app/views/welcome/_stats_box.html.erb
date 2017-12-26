@@ -1,0 +1,31 @@
+<div class="box">
+  <p class="title is-4">Your Stats</p>
+  <hr>
+  <% if current_user.body_weight_records.any? %>
+  <div class="content">
+    <p>
+      Current Weight:
+      <%= current_user.current_weight %>
+      - <%= link_to "all", body_weight_records_path %>
+    </p>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= form_tag body_weight_records_path, method: :post do %>
+      <div class="field has-addons">
+        <div class="control">
+          <%= number_field_tag(
+              :weight,
+              params[:weight],
+              placeholder: "Update Weight",
+              min: 0,
+              class: "input",
+              type: 'float',
+          ) %>
+        </div>
+        <%= submit_tag "Save", class: "button is-link" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

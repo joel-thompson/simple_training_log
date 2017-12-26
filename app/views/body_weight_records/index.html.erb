@@ -1,0 +1,11 @@
+<% provide(:title, "Body Weight Records") %>
+<% provide(:heading_title, "Body Weight Records") %>
+<% provide(:heading_subtitle, "All") %>
+
+<section class="section">
+  <%= render @records %>
+  <% if @records.count > BodyWeightRecord.page_length %>
+    <hr>
+  <% end %>
+  <%= will_paginate @records, renderer: BulmaPagination::Rails %>
+</section>
