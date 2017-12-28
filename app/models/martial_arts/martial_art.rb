@@ -13,12 +13,15 @@ module MartialArts
     validate :valid_goal
     validate :valid_duration
 
+    # attr_accessor :duration_in_minutes
+
     def friendly_type
       return "Other" if type == nil
       type.split('::')[1].underscore.split('_').collect{|c| c.capitalize}.join(' ')
     end
 
     def duration_in_minutes
+      return nil unless duration_in_seconds.present?
       duration_in_seconds / 60
     end
 
