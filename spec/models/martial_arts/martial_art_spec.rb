@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MartialArts::MartialArt, type: :model do
 
-    fixtures :users
+  fixtures :users
 
   before do
     @user       = users(:michael)

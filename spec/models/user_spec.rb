@@ -81,16 +81,36 @@ RSpec.describe User, type: :model do
       expect(@user.authenticated?(:remember, '')).to eql(false)
     end
 
-    describe "when listing entries" do
+  end
 
-      # is not currently testing for the order returned
-      it "lists all entries" do
-        sesh = @saved_user.martial_arts.create(duration_in_seconds: 60)
-        expect(@saved_user.all_entries).to include(sesh)
-      end
+  describe "when listing entries" do
+
+    # is not currently testing for the order returned
+    it "lists all entries" do
+      sesh = @saved_user.martial_arts.create(duration_in_seconds: 60)
+      expect(@saved_user.all_entries).to include(sesh)
+    end
+  end
+
+  describe "#current_weight" do
+    it "returns correct weight" do
+      @saved_user.body_weight_records.create(weight: 75.5)
+      @saved_user.body_weight_records.create(weight: 85.5)
+      expect(@saved_user.current_weight).to eq 85.5
+    end
+  end
+
+  describe "#update_weight" do
+    it "creates a new body_weight_record" do
+      expect{
+        @saved_user.update_weight(99.1)
+      }.to change{BodyWeightRecord.count}.by(1)
     end
 
-
+    it "updates the current weight" do
+      @saved_user.update_weight(99.5)
+      expect(@saved_user.current_weight).to eq 99.5
+    end
   end
 
 end

@@ -1,2 +1,6 @@
-<%= render @feed_items %>
-<%= will_paginate @feed_items, renderer: BulmaPagination::Rails %>
+<div class="box">
+  <h4 class="title is-4">Workout Feed</h4>
+  <hr>
+  <%= render @feed_items %>
+  <%= will_paginate @feed_items, renderer: BulmaPagination::Rails %>
+</div>

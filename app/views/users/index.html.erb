@@ -2,9 +2,9 @@
 <% provide(:heading_title, 'All Users') %>
 
 <section class="section">
-  <%= will_paginate @users, renderer: BulmaPagination::Rails%>
-  <br><br>
   <%= render @users %>
-  <br>
+  <% if @users.count > User.page_length %>
+    <hr>
+  <% end %>
   <%= will_paginate @users, renderer: BulmaPagination::Rails %>
 </section>

@@ -1,7 +1,7 @@
 <% provide(:title, @martial_art.friendly_type) %>
 <% provide(:heading_title, @martial_art.friendly_type) %>
-<% provide(:heading_subtitle, time_and_date_text) %>
-<% provide(:heading_subsubtitle, duration_and_location) %>
+<% provide(:heading_subtitle, time_and_date_text(@martial_art)) %>
+<% provide(:heading_subsubtitle, duration_and_location(@martial_art)) %>
 
 <section class="section">
 

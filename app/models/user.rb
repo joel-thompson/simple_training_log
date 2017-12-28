@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :martial_arts, class_name: "MartialArts::MartialArt", dependent: :destroy
+  has_many :body_weight_records
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -16,6 +17,10 @@ class User < ApplicationRecord
 
 	has_secure_password
 
+  self.per_page = 20
+  def self.page_length
+    self.per_page
+  end
 
 
 	# Returns the hash digest of the given string.
@@ -93,6 +98,14 @@ class User < ApplicationRecord
 
   def last_name
     self.name.blank? ? "" : self.name.split(" ")[1]
+  end
+
+  def current_weight
+    body_weight_records.first.weight
+  end
+
+  def update_weight(weight)
+    body_weight_records.create!(weight: weight)
   end
 
 	private
