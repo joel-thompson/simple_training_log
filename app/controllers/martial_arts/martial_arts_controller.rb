@@ -9,8 +9,9 @@ class MartialArts::MartialArtsController < ApplicationController
   end
 
   def new
-    @martial_art = MartialArts::MartialArt.new
-    @martial_art.occurred_date = Date.today.to_s
+    @martial_art = MartialArts::MartialArt.new(
+      occurred_date: Date.today.to_s
+    )
   end
 
   def create
@@ -35,7 +36,6 @@ class MartialArts::MartialArtsController < ApplicationController
   end
 
   def edit
-    @martial_art.duration_in_seconds = @martial_art.duration_in_seconds / 60
   end
 
   def update
@@ -55,8 +55,8 @@ class MartialArts::MartialArtsController < ApplicationController
 
 		def martial_art_params
       if params[:martial_art].present?
-        if params[:martial_art][:duration_in_seconds].present?
-          params[:martial_art][:duration_in_seconds] = params[:martial_art][:duration_in_seconds].to_i * 60
+        if params[:martial_art][:duration_in_minutes].present?
+          params[:martial_art][:duration_in_seconds] = params[:martial_art][:duration_in_minutes].to_i * 60
         end
       end
 
