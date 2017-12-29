@@ -33,4 +33,4 @@ script/test # runs the test suite
 Anything merged into master is automatically deployed via Heroku. Pull requests should be used, and CircleCI tests need to pass in order to merge.
 
 The app is available at:
-www.loggingprogress.com (redirects to heroku subdomain currently)
+app.loggingprogress.com
