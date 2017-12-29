@@ -3,6 +3,8 @@ base:
   duration_in_seconds: 60
   created_at: <%= 10.minutes.ago %>
   updated_at: <%= 10.minutes.ago %>
+  occurred_date: <%= Date.today %>
+  occurred_time: 'morning'
 
 jiu_jitsu:
   notes: "triangle doing better"
@@ -10,3 +12,5 @@ jiu_jitsu:
   type: "MartialArts::JiuJitsu"
   created_at: <%= 10.minutes.ago %>
   updated_at: <%= 10.minutes.ago %>
+  occurred_date: <%= Date.today %>
+  occurred_time: 'morning'

@@ -1,6 +1,10 @@
 module MartialArts
   class MartialArt < ApplicationRecord
 
+    # these two go together
+    default_scope -> { order(occurred_date: :desc) }
+    extend FindByOccurred
+
     before_save :default_values
 
     has_many :rounds, dependent: :destroy
@@ -13,7 +17,13 @@ module MartialArts
     validate :valid_goal
     validate :valid_duration
 
-    # attr_accessor :duration_in_minutes
+
+
+    # def self.last_occurred
+    #   most_recent_date = self.first.occurred_date
+    #   options = self.where(occurred_date: most_recent_date).to_a.flatten
+    #   Entries.sort_by_occurred!(options).first
+    # end
 
     def friendly_type
       return "Other" if type == nil
