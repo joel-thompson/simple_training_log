@@ -89,6 +89,8 @@ class User < ApplicationRecord
     entries << martial_arts
     entries.flatten!
 
+    entries.select! { |e| e.occurred_date.present? && e.occurred_time.present? }
+
     Entries.sort_by_occurred!(entries)
   end
 

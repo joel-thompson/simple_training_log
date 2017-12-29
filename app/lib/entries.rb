@@ -15,8 +15,6 @@ module Entries
   end
 
   def self.sort_by_occurred!(entries)
-    entries.select! { |e| e.occurred_date.present? && e.occurred_time.present? }
-
     entries.sort_by! { |e| e.created_at }
     entries.sort_by! { |e| ENTRIES_TIME_OPTIONS.index(e.occurred_time) }
     entries.sort_by! { |e| e.occurred_date }.reverse!

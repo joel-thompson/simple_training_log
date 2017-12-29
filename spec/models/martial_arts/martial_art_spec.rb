@@ -59,6 +59,12 @@ RSpec.describe MartialArts::MartialArt, type: :model do
 
     describe "when finding the most recent occurred" do
       it "returns the most recent occurred entry" do
+        # binding.pry
+        @user.martial_arts.create(
+          duration_in_seconds: 60,
+          occurred_date: Date.yesterday,
+          occurred_time: 'morning'
+        )
         @user.martial_arts.create(
           duration_in_seconds: 60,
           occurred_date: Date.today,
