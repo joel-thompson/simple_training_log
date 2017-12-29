@@ -10,7 +10,9 @@ RSpec.describe MartialArts::MartialArt, type: :model do
     @other_user = users(:archer)
     @sesh = @user.martial_arts.new(
       notes: "had a great time",
-      duration_in_seconds: 60
+      duration_in_seconds: 60,
+      occurred_time: "morning",
+      occurred_date: Date.today
     )
 
     @badsesh = MartialArts::MartialArt.new
@@ -59,10 +61,9 @@ RSpec.describe MartialArts::MartialArt, type: :model do
 
     describe "when finding the most recent occurred" do
       it "returns the most recent occurred entry" do
-        # binding.pry
         @user.martial_arts.create(
           duration_in_seconds: 60,
-          occurred_date: Date.yesterday,
+          occurred_date: (Date.today - 1.year),
           occurred_time: 'morning'
         )
         @user.martial_arts.create(

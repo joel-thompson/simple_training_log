@@ -10,11 +10,13 @@
   <div class="navbar-menu" id="navMenu">
     <div class="navbar-start">
       <!-- navbar items -->
+      <%= link_to "Home", root_path, class: "navbar-item" %>
+      <%= link_to "Lifts", lift_choices_path, class: "navbar-item" %>
     </div>
 
     <div class="navbar-end">
       <!-- navbar items -->
-      <%= link_to "Home", root_path, class: "navbar-item" %>
+
       <%= link_to "Help", '#', class: "navbar-item" %>
 
       <% if logged_in? %>

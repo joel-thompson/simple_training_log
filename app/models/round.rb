@@ -11,7 +11,6 @@ class Round < ApplicationRecord
   validates :notes, length: { maximum: 1000 }
 
   private def default_values
-    self.submissions = 0 if submissions == nil
-    self.submissions = 0 if submissions == ""
+    self.submissions = 0 unless self.submissions.present?
   end
 end

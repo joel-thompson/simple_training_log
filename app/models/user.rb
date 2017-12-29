@@ -2,12 +2,14 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :martial_arts, class_name: "MartialArts::MartialArt", dependent: :destroy
   has_many :body_weight_records
+  has_many :lift_choices
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
 	before_save :downcase_email
 	before_create :create_activation_digest
-  after_save :send_activation_email_if_needed
+  after_create :set_default_lift_choices
+  after_create :send_activation_email_if_needed
 
 	validates :name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -131,4 +133,9 @@ class User < ApplicationRecord
     def send_activation_email_if_needed
       send_activation_email unless self.activated?
     end
+
+    def set_default_lift_choices
+      Users::AddDefaultLiftChoices.run!(user: self)
+    end
+
 end
