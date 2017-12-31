@@ -87,7 +87,11 @@ RSpec.describe User, type: :model do
 
     # is not currently testing for the order returned
     it "lists all entries" do
-      sesh = @saved_user.martial_arts.create(duration_in_seconds: 60)
+      sesh = @saved_user.martial_arts.create(
+        duration_in_seconds: 60,
+        occurred_time: "morning",
+        occurred_date: Date.today
+      )
       expect(@saved_user.all_entries).to include(sesh)
     end
   end
@@ -110,6 +114,12 @@ RSpec.describe User, type: :model do
     it "updates the current weight" do
       @saved_user.update_weight(99.5)
       expect(@saved_user.current_weight).to eq 99.5
+    end
+  end
+
+  describe "#set_default_lift_choices" do
+    it "creates 3 defaults" do
+      expect(@saved_user.lift_choices.count).to eq 3
     end
   end
 

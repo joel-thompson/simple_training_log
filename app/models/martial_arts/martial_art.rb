@@ -1,6 +1,5 @@
 module MartialArts
   class MartialArt < ApplicationRecord
-    before_save :default_values
 
     has_many :rounds, dependent: :destroy
     has_many :techniques, dependent: :destroy
@@ -8,6 +7,9 @@ module MartialArts
     belongs_to :user
 
     validates :user, presence: true
+    validates :occurred_date, presence: true
+    validates :occurred_time, presence: true
+
     validate :valid_occurred_time
     validate :valid_goal
     validate :valid_duration
@@ -37,12 +39,6 @@ module MartialArts
 
     private def valid_duration
       errors.add(:duration, "cannot be blank") unless self.duration_in_seconds.present?
-    end
-
-    # might want to be more mindful about these - would be easy to allow all bad input
-    private def default_values
-      self.occurred_date = Date.today unless self.occurred_date.present?
-      self.occurred_time = "morning" unless self.occurred_time.present?
     end
 
   end

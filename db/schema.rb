@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226161708) do
+ActiveRecord::Schema.define(version: 20171230010654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20171226161708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_body_weight_records_on_user_id", using: :btree
+  end
+
+  create_table "lift_choices", force: :cascade do |t|
+    t.integer  "default_sets"
+    t.integer  "default_reps"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "has_weight"
+    t.integer  "user_id"
+    t.string   "name"
+    t.index ["user_id", "name"], name: "index_lift_choices_on_user_id_and_name", unique: true, using: :btree
+    t.index ["user_id"], name: "index_lift_choices_on_user_id", using: :btree
   end
 
   create_table "martial_arts", force: :cascade do |t|
@@ -85,6 +97,7 @@ ActiveRecord::Schema.define(version: 20171226161708) do
   end
 
   add_foreign_key "body_weight_records", "users"
+  add_foreign_key "lift_choices", "users"
   add_foreign_key "martial_arts", "users"
   add_foreign_key "microposts", "users"
   add_foreign_key "rounds", "martial_arts"

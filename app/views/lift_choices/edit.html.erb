@@ -1,0 +1,18 @@
+<% provide(:title, 'Lift Choices') %>
+<% provide(:heading_title, 'Lift Choices') %>
+<% provide(:heading_subtitle, 'Edit') %>
+<% provide(:button_text, 'Save!') %>
+
+<section class="section">
+
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+      <%= render 'form' %>
+    </div>
+  </div>
+
+  <hr>
+  <%= link_to "delete", lift_choice_path(@lift_choice), method: :delete,
+                                   data: { confirm: "You sure?" }, class: "button is-danger" %>
+
+</section>

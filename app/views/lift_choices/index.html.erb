@@ -1,0 +1,17 @@
+<% provide(:title, "Lift Choices") %>
+<% provide(:heading_title, "Lift Choices") %>
+<% provide(:heading_subtitle, "All") %>
+
+<section class="section">
+  <div class="buttons">
+    <%= link_to "add lift choice", new_lift_choice_path, class: "button is-link" %>
+  </div>
+
+  <% if @lift_choices.any? %>
+      <hr>
+      <div class="columns is-multiline">
+        <%= render @lift_choices %>
+      </div>
+  <% end %>
+
+</section>
