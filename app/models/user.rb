@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :martial_arts, class_name: "MartialArts::MartialArt", dependent: :destroy
-  has_many :body_weight_records
-  has_many :lift_choices
+  has_many :body_weight_records, dependent: :destroy
+  has_many :lift_choices, dependent: :destroy
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
