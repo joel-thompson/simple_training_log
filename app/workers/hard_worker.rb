@@ -1,6 +1,8 @@
 class HardWorker
   include Sidekiq::Worker
 
+  # NOTE: just an example worker
+
   def perform(name, email, password)
     User.create(
       name: name,
