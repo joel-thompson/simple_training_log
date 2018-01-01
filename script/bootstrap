@@ -8,5 +8,10 @@ if ! brew ls --versions ImageMagick > /dev/null ; then
   brew install ImageMagick
 fi
 
+if ! brew ls --versions redis > /dev/null ; then
+  echo "==> Installing Redis via homebrew..."
+  brew install redis
+fi
+
 # install gems
 bundle install
