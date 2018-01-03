@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+unless Rails.env.development?
+  raise "You can't seed your test database, maybe you were looking for db:migrate:reset?" if Rails.env.test?
+  raise "Don't be silly, you can't seed this database"
+end
+
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "12341234",
