@@ -26,11 +26,6 @@ module MartialArts
       duration_in_seconds / 60
     end
 
-    private def valid_occurred_time
-      return unless self.occurred_time.present?
-      errors.add(:occurred_time, "invalid time") unless Entries.valid_times.include? self.occurred_time
-    end
-
     private def valid_goal
       if !self.goal.present? && self.goal_result.present?
         errors.add(:goal_result, "not valid without goal")

@@ -123,4 +123,23 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "having many lifts through lift choices" do
+
+    it "can find the lifts through #lifts" do
+      squat = @saved_user.lift_choices.create(
+        name: 'barbell squat bro',
+        has_weight: true,
+        default_sets: 3,
+        default_reps: 5
+      )
+      squat_record = squat.lifts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+
+      expect(@saved_user.lifts).to include(squat_record)
+    end
+
+  end
+
 end

@@ -99,6 +99,11 @@ RSpec.configure do |config|
   # end
 
   # fixtures :all
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
 
 
 end
