@@ -1,0 +1,39 @@
+<% provide(:title, @lift.friendly_name) %>
+<% provide(:heading_title, @lift.friendly_name) %>
+<% provide(:heading_subtitle, time_and_date_text(@lift)) %>
+
+<section class="section">
+
+  <div class="buttons">
+    <%= link_to "edit", edit_lift_path(@lift), class: "button is-link" %>
+  </div>
+
+  <hr>
+
+  <div class="content">
+    <p class="title is-5">Weight:</p>
+    <p><%= @lift.weight %></p>
+  </div>
+
+  <div class="content">
+    <p class="title is-5">Sets:</p>
+    <p><%= @lift.sets %></p>
+  </div>
+
+  <div class="content">
+    <p class="title is-5">Reps:</p>
+    <p><%= @lift.reps %></p>
+  </div>
+
+  <% if @lift.notes.present? %>
+    <div class="content">
+      <p class="title is-5">Notes:</p>
+      <%= simple_format(@lift.notes) %>
+    </div>
+  <% end %>
+
+  <hr>
+  <%= link_to "delete", @lift, method: :delete,
+                                   data: { confirm: "You sure?" }, class: "button is-danger" %>
+
+</section>

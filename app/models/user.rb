@@ -90,6 +90,7 @@ class User < ApplicationRecord
   def all_entries
     entries = []
     entries << martial_arts
+    entries << lifts
     entries.flatten!
 
     entries.select! { |e| e.occurred_date.present? && e.occurred_time.present? }

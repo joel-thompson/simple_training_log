@@ -1,0 +1,16 @@
+<div class="content" id="lift-<%= lift.id %>">
+  <p class="title is-5">Previous:</p>
+  <p>
+    <%= sets_and_reps(lift) %>
+  </p>
+
+  <% if lift.notes.present? %>
+    <p class="subtitle is-6">
+      Notes:
+    </p>
+
+    <%= simple_format(lift.notes) %>
+  <% end %>
+
+  <hr>
+</div>

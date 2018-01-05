@@ -22,4 +22,20 @@ module Entries
     entries
   end
 
+  def self.time_now
+    now = Time.now
+    afternoon = Time.parse('12pm')
+    evening = Time.parse('5pm')
+
+    if now < afternoon
+      ENTRIES_TIME_OPTIONS[0]
+    elsif now >= afternoon && now < evening
+      ENTRIES_TIME_OPTIONS[1]
+    elsif now >= evening
+      ENTRIES_TIME_OPTIONS[2]
+    else
+      ENTRIES_TIME_OPTIONS[0]
+    end
+  end
+
 end

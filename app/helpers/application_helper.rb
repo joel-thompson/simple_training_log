@@ -9,4 +9,12 @@ module ApplicationHelper
     end
   end
 
+  def time_and_date_text(thing)
+    return "" unless thing.present?
+
+    thing.occurred_date.to_s(:short_ordinal) +
+      " - " +
+      thing.occurred_time.capitalize
+  end
+
 end

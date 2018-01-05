@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   resources :rounds
   resources :body_weight_records, only: [:create, :index, :destroy]
   resources :lift_choices, except: [:show]
+  resources :lifts
 
 end
