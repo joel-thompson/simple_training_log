@@ -13,6 +13,6 @@
 
   <hr>
   <%= link_to "delete", lift_choice_path(@lift_choice), method: :delete,
-                                   data: { confirm: "You sure?" }, class: "button is-danger" %>
+                                   data: { confirm: "You sure? This will also delete ALL records of this lift!!" }, class: "button is-danger" %>
 
 </section>

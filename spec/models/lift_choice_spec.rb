@@ -64,4 +64,35 @@ RSpec.describe LiftChoice, type: :model do
     end
   end
 
+  describe '#last_occurred' do
+    it "returns the last occurred for the user and choice" do
+      squat = @user.lift_choices.create(
+        name: 'squat',
+        has_weight: false
+      )
+
+      other_squat = @other_user.lift_choices.create(
+        name: 'squat',
+        has_weight: false
+      )
+
+      squat.lifts.create(
+        occurred_date: Date.today,
+        occurred_time: 'morning'
+      )
+
+      recent = squat.lifts.create(
+        occurred_date: Date.today,
+        occurred_time: 'afternoon'
+      )
+
+      other_squat.lifts.create(
+        occurred_date: Date.today,
+        occurred_time: 'evening'
+      )
+
+      expect(squat.last_occurred).to eq recent
+    end
+  end
+
 end
