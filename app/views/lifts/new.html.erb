@@ -1,0 +1,19 @@
+<% provide(:title, @lift.friendly_name) %>
+<% provide(:heading_title, @lift.friendly_name) %>
+<% provide(:heading_subtitle, 'New') %>
+<% provide(:button_text, 'Save!') %>
+
+<section class="section">
+
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+
+      <% if @previous_lift.present? %>
+        <%= render 'previous', lift: @previous_lift %>
+      <% end %>
+
+      <%= render 'form' %>
+    </div>
+  </div>
+
+</section>

@@ -17,6 +17,7 @@ class LiftChoice < ApplicationRecord
   end
 
   def last_occurred
+    return nil if Lift.where(lift_choice: self).empty?
     most_recent_date = lifts.order({ occurred_date: :asc }).last.occurred_date
     options = lifts.where(occurred_date: most_recent_date).to_a.flatten
     Entries.sort_by_occurred!(options).first
