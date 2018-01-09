@@ -7,8 +7,10 @@
 
   <% if @lift_choices.any? %>
     <hr>
-    <% @lift_choices.each do |lc| %>
-      <%= link_to lc.friendly_name, new_lift_path(lift_choice_id: lc.id), class: "button is-link" %>
-    <% end %>
+    <div class="buttons">
+      <% @lift_choices.each do |lc| %>
+        <%= link_to lc.friendly_name, new_lift_path(lift_choice_id: lc.id), class: "button is-link" %>
+      <% end %>
+    </div>
   <% end %>
 </div>
