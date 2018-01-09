@@ -5,9 +5,18 @@
 
 <section class="section">
 
-  <div class="columns is-centered">
+  <div class="columns">
     <div class="column is-one-third">
       <%= render 'form' %>
+    </div>
+    <div class="column is-1">
+    </div>
+    <div class="column is-one-third">
+      <% if @lifts.any? %>
+          <p class="title is-6">All <%= @lift_choice.friendly_name.pluralize %></p>
+          <hr>
+          <%= render @lifts %>
+      <% end %>
     </div>
   </div>
 
