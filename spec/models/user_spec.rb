@@ -90,7 +90,7 @@ RSpec.describe User, type: :model do
       sesh = @saved_user.martial_arts.create(
         duration_in_seconds: 60,
         occurred_time: "morning",
-        occurred_date: Date.today
+        occurred_date: Date.current
       )
       expect(@saved_user.all_entries).to include(sesh)
     end
@@ -133,7 +133,7 @@ RSpec.describe User, type: :model do
         default_reps: 5
       )
       squat_record = squat.lifts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.current,
         occurred_time: 'morning'
       )
 

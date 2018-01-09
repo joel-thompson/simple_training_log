@@ -10,7 +10,7 @@ RSpec.describe RoundsController, type: :controller do
     @martial_art = @user.martial_arts.create(
       duration_in_seconds: 120,
       occurred_time: "morning",
-      occurred_date: Date.today
+      occurred_date: Date.current
     )
     @round_saved = @martial_art.rounds.create(partner_name: "chris")
   end

@@ -13,7 +13,7 @@ RSpec.describe Lift, type: :model do
       default_reps: 5
     )
     @squat_record = @squat.lifts.create(
-      occurred_date: Date.today,
+      occurred_date: Date.current,
       occurred_time: 'morning',
       weight: 70.8
     )
@@ -91,7 +91,7 @@ RSpec.describe Lift, type: :model do
   describe 'sets and reps' do
     it "uses the default sets when creating" do
         squat_record = @squat.lifts.create(
-          occurred_date: Date.today,
+          occurred_date: Date.current,
           occurred_time: 'morning',
           weight: 70
         )
@@ -100,7 +100,7 @@ RSpec.describe Lift, type: :model do
 
     it "uses the default reps when creating" do
         squat_record = @squat.lifts.create(
-          occurred_date: Date.today,
+          occurred_date: Date.current,
           occurred_time: 'morning',
           weight: 70
         )

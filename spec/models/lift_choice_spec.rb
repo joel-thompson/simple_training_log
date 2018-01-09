@@ -77,21 +77,21 @@ RSpec.describe LiftChoice, type: :model do
       )
 
       squat.lifts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.current,
         occurred_time: 'morning',
         sets: 3,
         reps: 3
       )
 
       recent = squat.lifts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.current,
         occurred_time: 'afternoon',
         sets: 3,
         reps: 3
       )
 
       other_squat.lifts.create(
-        occurred_date: Date.today,
+        occurred_date: Date.current,
         occurred_time: 'evening',
         sets: 3,
         reps: 3

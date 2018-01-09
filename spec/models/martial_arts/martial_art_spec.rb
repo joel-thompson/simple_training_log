@@ -12,7 +12,7 @@ RSpec.describe MartialArts::MartialArt, type: :model do
       notes: "had a great time",
       duration_in_seconds: 60,
       occurred_time: "morning",
-      occurred_date: Date.today
+      occurred_date: Date.current
     )
 
     @badsesh = MartialArts::MartialArt.new
