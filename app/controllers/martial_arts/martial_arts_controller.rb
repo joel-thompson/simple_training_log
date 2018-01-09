@@ -10,7 +10,7 @@ class MartialArts::MartialArtsController < ApplicationController
 
   def new
     @martial_art = MartialArts::MartialArt.new(
-      occurred_date: Date.today.to_s,
+      occurred_date: Date.current.to_s,
       occurred_time: Entries.time_now
     )
   end

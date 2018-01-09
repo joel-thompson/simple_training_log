@@ -12,7 +12,7 @@ class LiftsController < ApplicationController
 
   def new
     @lift = @lift_choice.lifts.new(
-      occurred_date: Date.today,
+      occurred_date: Date.current,
       occurred_time: Entries.time_now
     )
 

@@ -16,7 +16,7 @@ RSpec.describe LiftsController, type: :controller do
     @create_lift_params = {
       lift_choice_id: @lift_choice.id,
       lift: {
-        occurred_date: Date.today,
+        occurred_date: Date.current,
         occurred_time: 'morning',
         weight: 70.0,
         sets: 3,

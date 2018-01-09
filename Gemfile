@@ -54,6 +54,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'rails_real_favicon'
 gem 'sidekiq'
 gem 'intercom', '~> 3.5.23'
+gem 'local_time'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

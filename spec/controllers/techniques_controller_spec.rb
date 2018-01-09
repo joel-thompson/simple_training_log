@@ -10,7 +10,7 @@ RSpec.describe TechniquesController, type: :controller do
     @martial_art = @user.martial_arts.create(
       duration_in_seconds: 60,
       occurred_time: "morning",
-      occurred_date: Date.today
+      occurred_date: Date.current
     )
     @technique_saved = @martial_art.techniques.create(name: "armbar")
   end
