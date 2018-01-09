@@ -23,6 +23,8 @@ class LiftChoicesController < ApplicationController
   end
 
   def edit
+    @lifts = @lift_choice.lifts.to_a.flatten
+    Entries.sort_by_occurred!(@lifts)
   end
 
   def update
