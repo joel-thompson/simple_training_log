@@ -5,12 +5,15 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
 
+  fixtures :users
+
   before do
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar",
               password_confirmation: "foobar")
 
     @saved_user = User.create(name: "Saved", email: "saved@example.com", password: "foobar",
               password_confirmation: "foobar")
+    @updateme = users(:joel)
   end
 
   describe "user" do
@@ -118,8 +121,13 @@ RSpec.describe User, type: :model do
   end
 
   describe "#set_default_lift_choices" do
-    it "creates 3 defaults" do
-      expect(@saved_user.lift_choices.count).to eq 3
+    it "enqueues the sidekiq job on create" do
+      expect(AddDefaultLiftChoicesWorker).to have_enqueued_sidekiq_job(@saved_user.id)
+    end
+
+    it "does not enqueue the sidekiq job on updates" do
+      @updateme.update(name: 'update')
+      expect(AddDefaultLiftChoicesWorker).to_not have_enqueued_sidekiq_job(@updateme.id)
     end
   end
 
