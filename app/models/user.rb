@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
 	before_save :downcase_email
 	before_create :create_activation_digest
-  after_create :set_default_lift_choices
+  after_commit :set_default_lift_choices, on: :create
   after_create :send_activation_email_if_needed
 
 	validates :name, presence: true, length: { maximum: 50 }
@@ -137,7 +137,7 @@ class User < ApplicationRecord
     end
 
     def set_default_lift_choices
-      Users::AddDefaultLiftChoices.run!(user: self)
+      AddDefaultLiftChoicesWorker.perform_async(self.id)
     end
 
 end
