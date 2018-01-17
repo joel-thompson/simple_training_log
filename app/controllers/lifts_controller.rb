@@ -61,7 +61,8 @@ class LiftsController < ApplicationController
       :occurred_date,
       :occurred_time,
       :location,
-      :notes
+      :notes,
+      :last_amrap_set
     )
   end
 
