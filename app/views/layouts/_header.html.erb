@@ -1,4 +1,4 @@
-<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+<nav class="navbar is-black is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <%= link_to "LP", root_path, id: "logo", class: "navbar-item" %>
     <button class="button navbar-burger is-black" data-target="navMenu">
@@ -23,7 +23,7 @@
 
       <% if logged_in? %>
         <%= link_to "Users", users_path, class: "navbar-item" %>
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-item has-dropdown">
           <a class="navbar-link">
             <%= current_user.first_name %>
           </a>
