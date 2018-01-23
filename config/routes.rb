@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
 	resources :users
-
   resources :account_activations, only: [:edit, :new]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
@@ -23,5 +22,9 @@ Rails.application.routes.draw do
   resources :body_weight_records, only: [:create, :index, :destroy]
   resources :lift_choices, except: [:show]
   resources :lifts
+
+  get '/lift_calculations', to: 'lift_calculations#index'
+  post '/lift_calculations/result', to: 'lift_calculations#result', as: 'lift_calculations_result'
+  get '/lift_calculations/result', to: redirect('/lift_calculations')
 
 end

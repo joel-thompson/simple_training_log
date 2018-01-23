@@ -1,0 +1,14 @@
+<% if @barbell.present? %>
+  <div class="content">
+    <p class="title is-5">Plate Calculator</p>
+    <p>
+      Barbell <br>
+      45 - <%= @barbell.plate_count(45) %> <br>
+      35 - <%= @barbell.plate_count(35) %> <br>
+      25 - <%= @barbell.plate_count(25) %> <br>
+      10 - <%= @barbell.plate_count(10) %> <br>
+      5 - <%= @barbell.plate_count(5) %> <br>
+      2.5 - <%= @barbell.plate_count(2.5) %> <br>
+    </p>
+  </div>
+<% end %>
