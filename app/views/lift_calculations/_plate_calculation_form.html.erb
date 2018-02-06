@@ -1,0 +1,21 @@
+<p class="title is-5">Plate Calculator</p>
+
+<%= form_tag lift_calculations_result_path, method: :post do %>
+  <% if @barbell.present? %>
+    <%= render "shared/error_messages", object: @barbell %>
+  <% end %>
+  <%= hidden_field_tag :calculation, "plate" %>
+  <div class="field has-addons">
+    <div class="control">
+      <%= number_field_tag(
+          :barbell_weight,
+          params[:weight],
+          placeholder: "e.g. 135",
+          min: 0,
+          class: "input",
+          type: 'float',
+      ) %>
+    </div>
+    <%= submit_tag "Submit", class: "button is-link" %>
+  </div>
+<% end %>

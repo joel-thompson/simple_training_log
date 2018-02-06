@@ -1,0 +1,2 @@
+module LiftCalculationsHelper
+end
