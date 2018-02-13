@@ -1,4 +1,27 @@
-# README
+# Logging Progress
+
+This is a web application that can be used to log excercise. At this time it supports martial arts classes, and weight lifting. 
+
+The app is available at:
+[app.loggingprogress.com](https://app.loggingprogress.com), feel free to sign up and check it out!
+
+## Technologies
+
+I'm using the following in this app: 
+
+[Bulma](https://bulma.io/) as the CSS framework
+
+[RSpec](https://github.com/rspec/rspec-rails) for testing
+
+[Heroku](https://www.heroku.com/) with the GitHub integration for hosting/deployment
+
+[Sidekiq](https://github.com/mperham/sidekiq) for background job processing
+
+[CircleCI](https://circleci.com/) for continuous integration
+
+[Intercom](https://www.intercom.com/) for user facing messaging
+
+# Development
 
 ## Set up
 
@@ -44,7 +67,5 @@ script/server
 
 ## Deployment
 
-Anything merged into master is automatically deployed via Heroku. Pull requests should be used, and CircleCI tests need to pass in order to merge.
+Anything merged into master is automatically deployed. Pull requests should be used, and CircleCI tests need to pass in order to merge.
 
-The app is available at:
-[app.loggingprogress.com](https://app.loggingprogress.com)
