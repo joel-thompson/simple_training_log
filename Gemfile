@@ -55,6 +55,7 @@ gem 'rails_real_favicon'
 gem 'sidekiq'
 gem 'intercom', '~> 3.5.23'
 gem 'local_time'
+gem "intercom-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
