@@ -79,6 +79,18 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
       }.to change{BodyWeightRecord.count}.by(-1)
     end
 
+    it "calls to the event worker" do
+      log_in_as @user
+      delete :destroy, params: {
+        id: @record.id
+      }
+      expect(RecordIntercomEventWorker).to have_enqueued_sidekiq_job(
+        @user.id,
+        'Deleted Body Weight Record',
+        { weight: 70.1 },
+      )
+    end
+
     it "doesn't destroy if not logged in" do
       expect{
         delete :destroy, params: {
