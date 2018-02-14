@@ -107,7 +107,7 @@ class User < ApplicationRecord
   end
 
   def current_weight
-    body_weight_records.first.weight
+    body_weight_records&.first&.weight
   end
 
   def update_weight(weight)

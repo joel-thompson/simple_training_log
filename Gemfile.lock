@@ -235,6 +235,8 @@ GEM
     inflecto (0.0.2)
     intercom (3.5.23)
       json (>= 1.8)
+    intercom-rails (0.3.8)
+      activesupport (> 3.0)
     ipaddress (0.8.3)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
@@ -430,6 +432,7 @@ DEPENDENCIES
   fog (= 1.42.0)
   font-awesome-sass (~> 4.7.0)
   intercom (~> 3.5.23)
+  intercom-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
