@@ -19,7 +19,7 @@ I'm using the following in this app:
 
 [CircleCI](https://circleci.com/) for continuous integration
 
-[Intercom](https://www.intercom.com/) for user facing messaging
+[Intercom](https://www.intercom.com/) for user facing messaging and help center
 
 # Development
 
