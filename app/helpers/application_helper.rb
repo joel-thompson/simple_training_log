@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def help_center_url
-    "https://intercom.help/logging-progress" if Rails.env.production?
+    "http://help.loggingprogress.com/" if Rails.env.production?
     "https://intercom.help/logging-progress-test"
   end
 
