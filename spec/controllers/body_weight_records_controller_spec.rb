@@ -55,6 +55,18 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
       }.to_not change{BodyWeightRecord.count}
       expect(response).to redirect_to(login_url)
     end
+
+    it "calls to the event worker" do
+      log_in_as @user
+      post :create, params: {
+        weight: 70.1
+      }
+      expect(RecordIntercomEventWorker).to have_enqueued_sidekiq_job(
+        @user.id,
+        'Updated Body Weight',
+        { weight: 70.1 },
+      )
+    end
   end
 
   describe "#destroy" do
