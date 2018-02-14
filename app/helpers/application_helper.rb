@@ -17,4 +17,9 @@ module ApplicationHelper
       thing.occurred_time.capitalize
   end
 
+  def help_center_url
+    "https://intercom.help/logging-progress" if Rails.env.production?
+    "https://intercom.help/logging-progress-test"
+  end
+
 end
