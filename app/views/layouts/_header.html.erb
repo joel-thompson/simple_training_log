@@ -20,7 +20,7 @@
     <div class="navbar-end">
       <!-- navbar items -->
 
-      <%= link_to "Help", '#', class: "navbar-item" %>
+      <%= link_to "Help", help_center_url, class: "navbar-item" %>
 
       <% if logged_in? %>
         <%= link_to "Users", users_path, class: "navbar-item" %>
