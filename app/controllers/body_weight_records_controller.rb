@@ -9,6 +9,7 @@ class BodyWeightRecordsController < ApplicationController
   def create
     @record = current_user.body_weight_records.new(weight: params[:weight])
     if @record.save
+      record_intercom_event
       flash[:success] = "Saved!"
       redirect_to root_url
     else
@@ -26,6 +27,14 @@ class BodyWeightRecordsController < ApplicationController
   private def correct_user
     @record = current_user.body_weight_records.find_by(id: params[:id])
     redirect_to root_url if @record.nil?
+  end
+
+  private def record_intercom_event
+    RecordIntercomEventWorker.perform_async(
+      current_user.id,
+      'Updated Body Weight',
+      { weight: @record.weight },
+    )
   end
 
 end
