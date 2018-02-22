@@ -35,6 +35,7 @@ class BodyWeightRecordsController < ApplicationController
       current_user.id,
       name,
       { weight: @record.weight },
+      Time.now.to_i,
     )
   end
 

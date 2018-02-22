@@ -10,28 +10,6 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
     @record = @user.body_weight_records.create(weight: 70.1)
   end
 
-  # describe "GET #index" do
-  #   it "returns http success" do
-  #     get :index
-  #     # binding.pry
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-
-  # describe "GET #create" do
-  #   it "returns http success" do
-  #     get :create
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-  #
-  # describe "GET #destroy" do
-  #   it "returns http success" do
-  #     get :destroy
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-
   describe "#create" do
     it "creates a record" do
       log_in_as @user
@@ -57,6 +35,8 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
     end
 
     it "calls to the event worker" do
+      now = Time.now
+      travel_to now
       log_in_as @user
       post :create, params: {
         weight: 70.1
@@ -65,6 +45,7 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
         @user.id,
         'Updated Body Weight',
         { weight: 70.1 },
+        now.to_i,
       )
     end
   end
@@ -80,6 +61,8 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
     end
 
     it "calls to the event worker" do
+      now = Time.now
+      travel_to now
       log_in_as @user
       delete :destroy, params: {
         id: @record.id
@@ -88,6 +71,7 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
         @user.id,
         'Deleted Body Weight Record',
         { weight: 70.1 },
+        now.to_i,
       )
     end
 

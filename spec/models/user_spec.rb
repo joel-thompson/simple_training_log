@@ -102,8 +102,9 @@ RSpec.describe User, type: :model do
   describe "#current_weight" do
     it "returns correct weight" do
       @saved_user.body_weight_records.create(weight: 75.5)
+      travel_to Time.now + 10.seconds
       @saved_user.body_weight_records.create(weight: 85.5)
-      expect(@saved_user.current_weight).to eq 85.5
+      expect(@saved_user.reload.current_weight).to eq 85.5
     end
   end
 
