@@ -56,6 +56,7 @@ gem 'sidekiq'
 gem 'intercom', '~> 3.5.23'
 gem 'local_time'
 gem "intercom-rails"
+gem "retries"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

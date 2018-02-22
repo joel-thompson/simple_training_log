@@ -335,6 +335,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    retries (0.0.5)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -446,6 +447,7 @@ DEPENDENCIES
   rails (~> 5.0.3)
   rails-controller-testing
   rails_real_favicon
+  retries
   rspec-rails (~> 3.6)
   rspec-sidekiq
   rspec_junit_formatter
