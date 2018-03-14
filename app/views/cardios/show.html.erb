@@ -1,0 +1,29 @@
+<% provide(:title, @cardio.friendly_name) %>
+<% provide(:heading_title, @cardio.friendly_name) %>
+<% provide(:heading_subtitle, time_and_date_text(@cardio)) %>
+
+<section class="section">
+
+  <div class="buttons">
+    <%= link_to "edit", edit_cardio_path(@cardio), class: "button is-link" %>
+  </div>
+
+  <hr>
+
+  <div class="content">
+    <p class="title is-5">Duration:</p>
+    <p><%= @cardio.duration_in_minutes %> minutes</p>
+  </div>
+
+  <% if @cardio.notes.present? %>
+    <div class="content">
+      <p class="title is-5">Notes:</p>
+      <%= simple_format(@cardio.notes) %>
+    </div>
+  <% end %>
+
+  <hr>
+  <%= link_to "delete", @cardio, method: :delete,
+                                   data: { confirm: "You sure?" }, class: "button is-danger" %>
+
+</section>

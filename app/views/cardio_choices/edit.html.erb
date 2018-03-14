@@ -1,0 +1,27 @@
+<% provide(:title, 'Cardio Choices') %>
+<% provide(:heading_title, 'Cardio Choices') %>
+<% provide(:heading_subtitle, 'Edit') %>
+<% provide(:button_text, 'Save!') %>
+
+<section class="section">
+
+  <div class="columns">
+    <div class="column is-one-third">
+      <%= render 'form' %>
+    </div>
+    <div class="column is-1">
+    </div>
+    <div class="column is-one-third">
+      <% if @cardios.any? %>
+          <p class="title is-6">All <%= @cardio_choice.friendly_name.pluralize %></p>
+          <hr>
+          <%= render @cardios %>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+  <%= link_to "delete", cardio_choice_path(@cardio_choice), method: :delete,
+                                   data: { confirm: "You sure? This will also delete ALL records of this cardio!!" }, class: "button is-danger" %>
+
+</section>

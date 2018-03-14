@@ -13,4 +13,13 @@
       <% end %>
     </div>
   <% end %>
+
+  <% if @cardio_choices.any? %>
+    <hr>
+    <div class="buttons">
+      <% @cardio_choices.each do |cc| %>
+        <%= link_to cc.friendly_name, new_cardio_path(cardio_choice_id: cc.id), class: "button is-link" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :rounds
   resources :body_weight_records, only: [:create, :index, :destroy]
   resources :lift_choices, except: [:show]
+  resources :cardio_choices, except: [:show]
   resources :lifts
+  resources :cardios
 
   get '/lift_calculations', to: 'lift_calculations#index'
   post '/lift_calculations/result', to: 'lift_calculations#result', as: 'lift_calculations_result'
