@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
     if logged_in?
       @feed_items = current_user.all_entries.paginate(page: params[:page], per_page: 10)
       @lift_choices = current_user.lift_choices
+      @cardio_choices = current_user.cardio_choices
     end
   end
 end

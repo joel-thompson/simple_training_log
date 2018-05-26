@@ -1,0 +1,52 @@
+<%= form_for(@cardio) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= hidden_field_tag :cardio_choice_id, @cardio_choice.id %>
+
+  <div class="columns">
+
+    <div class="column is-one-third">
+      <div class="field">
+        <%= f.label :duration_in_minutes, class: 'label' %>
+        <div class="control">
+          <%= f.number_field :duration_in_minutes, class: 'input', type: 'number', placeholder: "e.g. 1", min: 0 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-one-third">
+      <div class="field">
+        <%= f.label "Occured Date", class: 'label' %>
+        <div class="control">
+          <%= f.date_field :occurred_date, class: 'input' %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label "Occurred Time", class: 'label' %>
+        <div class="control">
+          <div class="select">
+            <%= f.select(:occurred_time,  @time_choices) %>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :notes, class: 'label' %>
+        <div class="control">
+          <%= f.text_area :notes, class: 'textarea', rows: 3, placeholder: "e.g. Was so fast" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <div class="control">
+          <%= f.submit yield(:button_text), class: "button is-link" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

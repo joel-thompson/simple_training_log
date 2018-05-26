@@ -132,6 +132,17 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#set_default_cardio_choices" do
+    it "enqueues the sidekiq job on create" do
+      expect(AddDefaultCardioChoicesWorker).to have_enqueued_sidekiq_job(@saved_user.id)
+    end
+
+    it "does not enqueue the sidekiq job on updates" do
+      @updateme.update(name: 'update')
+      expect(AddDefaultCardioChoicesWorker).to_not have_enqueued_sidekiq_job(@updateme.id)
+    end
+  end
+
   describe "having many lifts through lift choices" do
 
     it "can find the lifts through #lifts" do
@@ -149,6 +160,21 @@ RSpec.describe User, type: :model do
       expect(@saved_user.lifts).to include(squat_record)
     end
 
+  end
+
+  describe "having many cardios through cardio choices" do
+    it "can find the cardios through #lifts" do
+      run = @saved_user.cardio_choices.create(
+        name: 'run'
+      )
+      run_record = run.cardios.create(
+        occurred_date: Date.current,
+        occurred_time: 'morning',
+        duration_in_seconds: 60
+      )
+
+      expect(@saved_user.cardios).to include(run_record)
+    end
   end
 
 end

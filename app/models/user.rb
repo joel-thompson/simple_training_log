@@ -3,13 +3,16 @@ class User < ApplicationRecord
   has_many :martial_arts, class_name: "MartialArts::MartialArt", dependent: :destroy
   has_many :body_weight_records, dependent: :destroy
   has_many :lift_choices, dependent: :destroy
+  has_many :cardio_choices, dependent: :destroy
   has_many :lifts, through: :lift_choices
+  has_many :cardios, through: :cardio_choices
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
 	before_save :downcase_email
 	before_create :create_activation_digest
   after_commit :set_default_lift_choices, on: :create
+  after_commit :set_default_cardio_choices, on: :create
   after_create :send_activation_email_if_needed
 
 	validates :name, presence: true, length: { maximum: 50 }
@@ -91,6 +94,7 @@ class User < ApplicationRecord
     entries = []
     entries << martial_arts
     entries << lifts
+    entries << cardios
     entries.flatten!
 
     entries.select! { |e| e.occurred_date.present? && e.occurred_time.present? }
@@ -138,6 +142,10 @@ class User < ApplicationRecord
 
     def set_default_lift_choices
       AddDefaultLiftChoicesWorker.perform_async(self.id)
+    end
+
+    def set_default_cardio_choices
+      AddDefaultCardioChoicesWorker.perform_async(self.id)
     end
 
 end

@@ -1,0 +1,17 @@
+<% provide(:title, "Cardio Choices") %>
+<% provide(:heading_title, "Cardio Choices") %>
+<% provide(:heading_subtitle, "All") %>
+
+<section class="section">
+  <div class="buttons">
+    <%= link_to "add cardio choice", new_cardio_choice_path, class: "button is-link" %>
+  </div>
+
+  <% if @cardio_choices.any? %>
+      <hr>
+      <div class="columns is-multiline">
+        <%= render @cardio_choices %>
+      </div>
+  <% end %>
+
+</section>

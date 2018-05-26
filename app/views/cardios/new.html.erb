@@ -1,0 +1,14 @@
+<% provide(:title, @cardio.friendly_name) %>
+<% provide(:heading_title, @cardio.friendly_name) %>
+<% provide(:heading_subtitle, 'New') %>
+<% provide(:button_text, 'Save!') %>
+
+<section class="section">
+
+  <% if @previous_cardio.present? %>
+    <%= render 'previous', cardio: @previous_cardio %>
+  <% end %>
+
+  <%= render 'form' %>
+
+</section>

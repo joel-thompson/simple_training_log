@@ -57,6 +57,16 @@ RSpec.describe LiftChoice, type: :model do
     end
   end
 
+  describe 'before save' do
+    it "downcases the name" do
+      @kipping_pullup = @user.lift_choices.create(
+        has_weight: true,
+        name: 'KIPPING PULLUP'
+      )
+      expect(@kipping_pullup.name).to eq 'kipping pullup'
+    end
+  end
+
   describe "#friendly_name" do
     it "returns the nice name" do
       @squat.name = "barbell squat"
