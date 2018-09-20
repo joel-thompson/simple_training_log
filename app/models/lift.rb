@@ -3,17 +3,25 @@
 # Table name: lifts
 #
 #  id             :integer          not null, primary key
-#  lift_choice_id :integer
-#  weight         :float
-#  sets           :integer
-#  reps           :integer
-#  occurred_date  :date
-#  occurred_time  :string
+#  last_amrap_set :integer
 #  location       :string
 #  notes          :text
+#  occurred_date  :date
+#  occurred_time  :string
+#  reps           :integer
+#  sets           :integer
+#  weight         :float
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  last_amrap_set :integer
+#  lift_choice_id :integer
+#
+# Indexes
+#
+#  index_lifts_on_lift_choice_id  (lift_choice_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (lift_choice_id => lift_choices.id)
 #
 
 class Lift < ApplicationRecord

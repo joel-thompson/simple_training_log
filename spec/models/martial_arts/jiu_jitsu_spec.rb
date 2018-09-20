@@ -3,17 +3,25 @@
 # Table name: martial_arts
 #
 #  id                  :integer          not null, primary key
-#  type                :string
-#  notes               :text
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  user_id             :integer
 #  duration_in_seconds :integer
-#  occurred_date       :date
-#  occurred_time       :string
 #  goal                :text
 #  goal_result         :text
 #  location            :string
+#  notes               :text
+#  occurred_date       :date
+#  occurred_time       :string
+#  type                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :integer
+#
+# Indexes
+#
+#  index_martial_arts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 require 'rails_helper'

@@ -3,10 +3,20 @@
 # Table name: body_weight_records
 #
 #  id         :integer          not null, primary key
+#  expired_at :datetime
+#  weighed_at :datetime
 #  weight     :float
-#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_body_weight_records_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 require 'rails_helper'
@@ -19,15 +29,11 @@ RSpec.describe BodyWeightRecord, type: :model do
   before do
     @user       = users(:michael)
     @other_user = users(:archer)
-    @record = @user.body_weight_records.new(weight: 66.6)
+    @record = @user.body_weight_records.new(weight: 66.6, weighed_at: Time.now)
   end
 
   describe "validations" do
-    it "has a user" do
-      expect(@record.valid?).to eq true
-    end
-
-    it "has a weight value" do
+    it "is valid" do
       expect(@record.valid?).to eq true
     end
   end

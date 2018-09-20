@@ -3,10 +3,20 @@
 # Table name: body_weight_records
 #
 #  id         :integer          not null, primary key
+#  expired_at :datetime
+#  weighed_at :datetime
 #  weight     :float
-#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_body_weight_records_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 record1:

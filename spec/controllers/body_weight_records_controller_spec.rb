@@ -7,17 +7,17 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
   before do
     @user = users(:michael)
     @other_user = users(:archer)
-    @record = @user.body_weight_records.create(weight: 70.1)
+    @record = @user.body_weight_records.create(weight: 70.1, weighed_at: Time.now - 1.month)
   end
 
   describe "#create" do
     it "creates a record" do
+      now = Time.now
+      travel_to now
       log_in_as @user
       expect{
         post :create, params: {
-
             weight: 70.1
-
         }
       }.to change{BodyWeightRecord.count}.by(1)
       expect(response).to redirect_to(root_url)
@@ -26,16 +26,14 @@ RSpec.describe BodyWeightRecordsController, type: :controller do
     it "doens't create if not logged in" do
       expect{
         post :create, params: {
-
             weight: 70.1
-
         }
       }.to_not change{BodyWeightRecord.count}
       expect(response).to redirect_to(login_url)
     end
 
     it "calls to the event worker" do
-      now = Time.now
+      now = Time.now + 1.minute # bad but i need to do this to avoid state of the nation errors.
       travel_to now
       log_in_as @user
       post :create, params: {

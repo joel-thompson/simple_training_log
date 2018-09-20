@@ -3,18 +3,22 @@
 # Table name: users
 #
 #  id                :integer          not null, primary key
-#  name              :string
-#  email             :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  password_digest   :string
-#  remember_digest   :string
-#  admin             :boolean          default(FALSE)
-#  activation_digest :string
 #  activated         :boolean          default(FALSE)
 #  activated_at      :datetime
+#  activation_digest :string
+#  admin             :boolean          default(FALSE)
+#  email             :string
+#  name              :string
+#  password_digest   :string
+#  remember_digest   :string
 #  reset_digest      :string
 #  reset_sent_at     :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
 #
 
 require 'rails_helper'
@@ -120,9 +124,10 @@ RSpec.describe User, type: :model do
 
   describe "#current_weight" do
     it "returns correct weight" do
-      @saved_user.body_weight_records.create(weight: 75.5)
+      record_1 = @saved_user.body_weight_records.create(weight: 75.5, weighed_at: Time.now)
       travel_to Time.now + 10.seconds
-      @saved_user.body_weight_records.create(weight: 85.5)
+      record_1.update(expired_at: Time.now)
+      @saved_user.body_weight_records.create(weight: 85.5, weighed_at: Time.now)
       expect(@saved_user.reload.current_weight).to eq 85.5
     end
   end
