@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: lifts
+#
+#  id             :integer          not null, primary key
+#  lift_choice_id :integer
+#  weight         :float
+#  sets           :integer
+#  reps           :integer
+#  occurred_date  :date
+#  occurred_time  :string
+#  location       :string
+#  notes          :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  last_amrap_set :integer
+#
+
 class Lift < ApplicationRecord
   after_initialize :inherit_default_sets_and_reps, :if => :new_record?
 

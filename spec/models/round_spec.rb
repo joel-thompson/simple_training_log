@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: rounds
+#
+#  id             :integer          not null, primary key
+#  partner_name   :string
+#  submissions    :integer
+#  notes          :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  martial_art_id :integer
+#
+
 require 'rails_helper'
 
 RSpec.describe Round, type: :model do

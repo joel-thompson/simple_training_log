@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: techniques
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  details        :text
+#  notes          :text
+#  martial_art_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Technique < ApplicationRecord
   belongs_to :martial_art, class_name: "MartialArts::MartialArt"
 

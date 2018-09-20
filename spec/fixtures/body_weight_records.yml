@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: body_weight_records
+#
+#  id         :integer          not null, primary key
+#  weight     :float
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 record1:
   weight: "I just ate an orange!"
   created_at: <%= 10.minutes.ago %>

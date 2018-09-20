@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: cardios
+#
+#  id                  :integer          not null, primary key
+#  cardio_choice_id    :integer
+#  duration_in_seconds :integer
+#  notes               :text
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  occurred_date       :date
+#  occurred_time       :string
+#
+
 require 'rails_helper'
 
 RSpec.describe Cardio, type: :model do
