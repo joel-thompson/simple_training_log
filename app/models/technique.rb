@@ -22,4 +22,6 @@ class Technique < ApplicationRecord
   validates :details, length: { maximum: 1000 }
   validates :notes, length: { maximum: 1000 }
 
+  auto_strip_attributes :notes, :details
+
 end

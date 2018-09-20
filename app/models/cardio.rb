@@ -21,6 +21,8 @@ class Cardio < ApplicationRecord
 
   delegate :user, :name, :friendly_name, to: :cardio_choice
 
+  auto_strip_attributes :notes
+
   def duration_in_minutes
     return nil unless duration_in_seconds.present?
     duration_in_seconds / 60
