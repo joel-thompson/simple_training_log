@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: lift_choices
+#
+#  id           :integer          not null, primary key
+#  default_sets :integer
+#  default_reps :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  has_weight   :boolean
+#  user_id      :integer
+#  name         :string
+#
+
 class LiftChoice < ApplicationRecord
   belongs_to :user
   has_many :lifts, dependent: :destroy

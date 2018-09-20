@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: lifts
+#
+#  id             :integer          not null, primary key
+#  lift_choice_id :integer
+#  weight         :float
+#  sets           :integer
+#  reps           :integer
+#  occurred_date  :date
+#  occurred_time  :string
+#  location       :string
+#  notes          :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  last_amrap_set :integer
+#
+
 require 'rails_helper'
 
 RSpec.describe Lift, type: :model do

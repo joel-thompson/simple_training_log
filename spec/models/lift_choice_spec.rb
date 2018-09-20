@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: lift_choices
+#
+#  id           :integer          not null, primary key
+#  default_sets :integer
+#  default_reps :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  has_weight   :boolean
+#  user_id      :integer
+#  name         :string
+#
+
 require 'rails_helper'
 
 RSpec.describe LiftChoice, type: :model do
