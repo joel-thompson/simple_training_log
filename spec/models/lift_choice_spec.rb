@@ -3,13 +3,22 @@
 # Table name: lift_choices
 #
 #  id           :integer          not null, primary key
-#  default_sets :integer
 #  default_reps :integer
+#  default_sets :integer
+#  has_weight   :boolean
+#  name         :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  has_weight   :boolean
 #  user_id      :integer
-#  name         :string
+#
+# Indexes
+#
+#  index_lift_choices_on_user_id           (user_id)
+#  index_lift_choices_on_user_id_and_name  (user_id,name) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 require 'rails_helper'

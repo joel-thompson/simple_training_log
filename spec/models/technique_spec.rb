@@ -3,12 +3,20 @@
 # Table name: techniques
 #
 #  id             :integer          not null, primary key
-#  name           :string
 #  details        :text
+#  name           :string
 #  notes          :text
-#  martial_art_id :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  martial_art_id :integer
+#
+# Indexes
+#
+#  index_techniques_on_martial_art_id  (martial_art_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (martial_art_id => martial_arts.id)
 #
 
 require 'rails_helper'

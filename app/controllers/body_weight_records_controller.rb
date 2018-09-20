@@ -7,8 +7,8 @@ class BodyWeightRecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.body_weight_records.new(weight: params[:weight])
-    if @record.save
+    @record = current_user.update_weight(params[:weight])
+    if @record.valid?
       record_intercom_event('Updated Body Weight')
       flash[:success] = "Saved!"
       redirect_to root_url

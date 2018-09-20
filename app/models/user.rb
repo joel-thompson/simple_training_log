@@ -3,21 +3,27 @@
 # Table name: users
 #
 #  id                :integer          not null, primary key
-#  name              :string
-#  email             :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  password_digest   :string
-#  remember_digest   :string
-#  admin             :boolean          default(FALSE)
-#  activation_digest :string
 #  activated         :boolean          default(FALSE)
 #  activated_at      :datetime
+#  activation_digest :string
+#  admin             :boolean          default(FALSE)
+#  email             :string
+#  name              :string
+#  password_digest   :string
+#  remember_digest   :string
 #  reset_digest      :string
 #  reset_sent_at     :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
 #
 
 class User < ApplicationRecord
+  include StateOfTheNation
+
   has_many :microposts, dependent: :destroy
   has_many :martial_arts, class_name: "MartialArts::MartialArt", dependent: :destroy
   has_many :body_weight_records, dependent: :destroy
@@ -25,6 +31,8 @@ class User < ApplicationRecord
   has_many :cardio_choices, dependent: :destroy
   has_many :lifts, through: :lift_choices
   has_many :cardios, through: :cardio_choices
+
+  has_uniquely_active :body_weight_records
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -130,11 +138,12 @@ class User < ApplicationRecord
   end
 
   def current_weight
-    body_weight_records&.first&.weight
+    active_body_weight_record&.weight
   end
 
   def update_weight(weight)
-    body_weight_records.create!(weight: weight)
+    active_body_weight_record.update!(expired_at: Time.now) if active_body_weight_record
+    body_weight_records.create!(weight: weight, weighed_at: Time.now)
   end
 
 	private

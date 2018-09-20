@@ -3,12 +3,20 @@
 # Table name: rounds
 #
 #  id             :integer          not null, primary key
+#  notes          :text
 #  partner_name   :string
 #  submissions    :integer
-#  notes          :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  martial_art_id :integer
+#
+# Indexes
+#
+#  index_rounds_on_martial_art_id  (martial_art_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (martial_art_id => martial_arts.id)
 #
 
 class Round < ApplicationRecord
