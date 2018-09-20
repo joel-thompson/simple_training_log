@@ -32,6 +32,8 @@ module MartialArts
     validate :valid_goal
     validate :valid_duration
 
+    auto_strip_attributes :location, :goal, :goal_result, :notes
+
     def friendly_type
       return "Other" if type == nil
       type.split('::')[1].underscore.split('_').collect{|c| c.capitalize}.join(' ')

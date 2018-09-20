@@ -23,6 +23,8 @@ class Round < ApplicationRecord
   validates :partner_name, presence: true, length: { maximum: 50 }
   validates :notes, length: { maximum: 1000 }
 
+  auto_strip_attributes :notes
+
   private def default_values
     self.submissions = 0 unless self.submissions.present?
   end

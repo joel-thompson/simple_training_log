@@ -34,6 +34,8 @@ class Lift < ApplicationRecord
   delegate :user, :has_weight, :has_weight?,
   :default_sets, :default_reps, :name, :friendly_name, to: :lift_choice
 
+  auto_strip_attributes :location, :notes
+
   private def has_weight_when_needed
     errors.add(:weight, "should be empty") if self.weight.present? && !self.lift_choice&.has_weight?
     errors.add(:weight, "is required") if !self.weight.present? && self.lift_choice&.has_weight?
