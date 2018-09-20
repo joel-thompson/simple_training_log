@@ -142,8 +142,7 @@ class User < ApplicationRecord
   end
 
   def update_weight(weight)
-    active_body_weight_record.update!(expired_at: Time.now) if active_body_weight_record
-    body_weight_records.create!(weight: weight, weighed_at: Time.now)
+    BodyWeightRecords::Update.run!(user: self, weight: weight)
   end
 
 	private
