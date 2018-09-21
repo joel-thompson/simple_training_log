@@ -59,6 +59,9 @@ gem "intercom-rails"
 gem "retries"
 gem "auto_strip_attributes", "~> 2.5"
 gem 'state_of_the_nation'
+gem "chartkick"
+gem 'groupdate'
+gem 'draper'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
