@@ -21,3 +21,15 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
+
+squat:
+  user: weight_lifter
+  name: 'squat'
+  has_weight: true
+  default_sets: 3
+  default_reps: 5
+
+deadlift:
+  user: weight_lifter
+  name: 'deadlift'
+  has_weight: true

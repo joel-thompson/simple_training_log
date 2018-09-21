@@ -31,6 +31,22 @@ base:
   updated_at: <%= 10.minutes.ago %>
   occurred_date: <%= Date.yesterday %>
   occurred_time: 'morning'
+  user: martial_artist
+
+sesh:
+  notes: "had a great time"
+  duration_in_seconds: 60
+  occurred_time: "morning"
+  occurred_date: <%= Date.current %>
+  created_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>
+  user: martial_artist
+
+badsesh:
+  type: "MartialArts::MartialArt"
+  notes: 'foo'
+  created_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>
 
 jiu_jitsu:
   notes: "triangle doing better"
@@ -40,3 +56,4 @@ jiu_jitsu:
   updated_at: <%= 10.minutes.ago %>
   occurred_date: <%= Date.yesterday %>
   occurred_time: 'morning'
+  user: martial_artist

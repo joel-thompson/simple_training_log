@@ -19,14 +19,51 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-record1:
-  weight: "I just ate an orange!"
-  created_at: <%= 10.minutes.ago %>
+twenty_days_ago:
+  weight: 420
+  created_at: <%= Date.today - 20.days %>
+  weighed_at: <%= Date.today - 20.days %>
+  expired_at: <%= Date.today - 10.days %>
+  user: user_with_body_weight_records
 
-record2:
-  weight: "Check out the @tauday site by @mhartl: http://tauday.com"
-  created_at: <%= 3.years.ago %>
+ten_days_ago:
+  weight: 420
+  created_at: <%= Date.today - 10.days %>
+  weighed_at: <%= Date.today - 10.days %>
+  expired_at: <%= Date.today - 5.days %>
+  user: user_with_body_weight_records
+
+five_days_ago:
+  weight: 420
+  created_at: <%= Date.today - 5.days %>
+  weighed_at: <%= Date.today - 5.days %>
+  expired_at: <%= 1.hour.ago %>
+  user: user_with_body_weight_records
+
+one_hour_ago:
+  weight: 3
+  created_at: <%= 1.hour.ago %>
+  weighed_at: <%= 1.hour.ago %>
+  expired_at: <%= 10.minutes.ago %>
+  user: user_with_body_weight_records
+
+ten_minutes_ago:
+  weight: 20
+  created_at: <%= 10.minutes.ago %>
+  weighed_at: <%= 10.minutes.ago %>
+  expired_at: <%= 5.minutes.ago %>
+  user: user_with_body_weight_records
+
+five_minutes_ago:
+  weight: 30
+  created_at: <%= 5.minutes.ago %>
+  weighed_at: <%= 5.minutes.ago %>
+  expired_at: <%= Time.now %>
+  user: user_with_body_weight_records
 
 most_recent:
-  weight: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
-  created_at: <%= Time.zone.now %>
+  weight: 40
+  created_at: <%= Time.now %>
+  weighed_at: <%= Time.now %>
+  expired_at: <%= nil %>
+  user: user_with_body_weight_records

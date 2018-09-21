@@ -21,44 +21,44 @@
 require 'rails_helper'
 
 RSpec.describe CardioChoice, type: :model do
-  fixtures :users
+  fixtures :users, :cardio_choices
 
-  before do
-    @user  = users(:michael)
-    @other_user = users(:joel)
-    @run = @user.cardio_choices.new
-  end
+  let(:user) { users(:cardio_user) }
+  let(:other_user) { users(:joel) }
+
+  let(:run) { cardio_choices(:run) }
 
   describe "validations" do
     it "is invalid without a name" do
-      expect(@run.valid?).to eq false
+      run.name = nil
+      expect(run.valid?).to eq false
     end
 
     it "is valid with a name" do
-      @run.name = 'run'
-      expect(@run.valid?).to eq true
+      run.name = 'run'
+      expect(run.valid?).to eq true
     end
 
     it "has a short name" do
-      @run.name = 'a' * 51
-      expect(@run.valid?).to eq false
+      run.name = 'a' * 51
+      expect(run.valid?).to eq false
     end
 
     it "has a unique name for each user" do
-      @user.cardio_choices.create(
+      user.cardio_choices.create(
         name: 'running'
       )
-      running = @user.cardio_choices.build(
+      running = user.cardio_choices.build(
         name: 'Running'
       )
       expect(running.valid?).to eq false
     end
 
     it "allows the same name for different users" do
-      @user.cardio_choices.create(
+      user.cardio_choices.create(
         name: 'running'
       )
-      running = @other_user.cardio_choices.build(
+      running = other_user.cardio_choices.build(
         name: 'running'
       )
       expect(running.valid?).to eq true
@@ -67,27 +67,27 @@ RSpec.describe CardioChoice, type: :model do
 
   describe 'before save' do
     it "downcases the name" do
-      @row_machine = @user.cardio_choices.create(
+      row_machine = user.cardio_choices.create(
         name: 'ROW MACHINE'
       )
-      expect(@row_machine.name).to eq 'row machine'
+      expect(row_machine.name).to eq 'row machine'
     end
   end
 
   describe "#friendly_name" do
     it "returns the nice name" do
-      @run.name = "row machine"
-      expect(@run.friendly_name).to eq "Row Machine"
+      run.name = "row machine"
+      expect(run.friendly_name).to eq "Row Machine"
     end
   end
 
   describe '#last_occurred' do
     it "returns the last occurred for the user and choice" do
-      run = @user.cardio_choices.create(
-        name: 'run'
+      run = user.cardio_choices.create(
+        name: 'run1'
       )
 
-      other_run = @other_user.cardio_choices.create(
+      other_run = other_user.cardio_choices.create(
         name: 'run'
       )
 

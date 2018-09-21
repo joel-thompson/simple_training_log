@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: techniques
+#
+#  id             :integer          not null, primary key
+#  details        :text
+#  name           :string
+#  notes          :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  martial_art_id :integer
+#
+# Indexes
+#
+#  index_techniques_on_martial_art_id  (martial_art_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (martial_art_id => martial_arts.id)
+#
+
+triangle:
+  martial_art: jiu_jitsu
+  name: 'triangle'
+  details: "do the thing where i win"
+  notes: "I have long legs so it works well"
+
+bad_tech:
+  name: 'no martial art'

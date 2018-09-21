@@ -22,10 +22,39 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+user_with_body_weight_records:
+  name: Weight Man
+  email: weightman@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
+martial_artist:
+  name: Khabib
+  email: boolshit@eaglesmma.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+weight_lifter:
+  name: Alan Thrall
+  email: alan@untamed.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+cardio_user:
+  name: Pre
+  email: pre@nike.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 bobby:
-  # id: 1
   name: bobby
   email: bobby@lp.com
   password_digest: <%= User.digest('password') %>
@@ -39,8 +68,6 @@ michael:
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
-
-
 
 archer:
   name: Archer Example

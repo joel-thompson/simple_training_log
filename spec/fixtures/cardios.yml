@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: cardios
+#
+#  id                  :integer          not null, primary key
+#  duration_in_seconds :integer
+#  notes               :text
+#  occurred_date       :date
+#  occurred_time       :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  cardio_choice_id    :integer
+#
+# Indexes
+#
+#  index_cardios_on_cardio_choice_id  (cardio_choice_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (cardio_choice_id => cardio_choices.id)
+#
+
+run:
+  cardio_choice: run
+  duration_in_seconds: 70
+  occurred_date: <%= Date.current %>
+  occurred_time: 'morning'
+
+bike_ride:
+  cardio_choice: bike_ride
+  duration_in_seconds: 500
+  occurred_date: <%= Date.current %>
+  occurred_time: 'afternoon'
