@@ -3,6 +3,12 @@
 <% provide(:heading_subtitle, "All") %>
 
 <section class="section">
+
+  <% if @user.has_weight_records? %>
+    <%= line_chart @user.thirty_day_weight_graph, ytitle: "Pounds"%>
+    <hr>
+  <% end %>
+
   <%= render @records %>
   <% if @records.count > BodyWeightRecord.page_length %>
     <hr>

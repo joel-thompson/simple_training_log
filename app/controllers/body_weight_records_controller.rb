@@ -3,7 +3,8 @@ class BodyWeightRecordsController < ApplicationController
   before_action :correct_user,   only: [:destroy]
 
   def index
-    @records = current_user.body_weight_records.paginate(page: params[:page])
+    @records = BodyWeightRecordDecorator.decorate_collection(current_user.body_weight_records.paginate(page: params[:page]))
+    @user = current_user.decorate
   end
 
   def create

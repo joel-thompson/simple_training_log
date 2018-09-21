@@ -16,3 +16,5 @@
 //= require turbolinks
 //= require_tree .
 //= require local-time
+//= require Chart.bundle
+//= require chartkick
