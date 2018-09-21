@@ -5,7 +5,7 @@
 <section class="section">
 
   <% if @user.has_weight_records? %>
-    <%= line_chart @user.thirty_day_weight_graph, ytitle: "Pounds"%>
+    <%= line_chart @user.thirty_day_weight_graph, ytitle: "Pounds", min: @user.graph_min_weight, max: @user.graph_max_weight%>
     <hr>
   <% end %>
 
