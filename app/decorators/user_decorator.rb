@@ -24,11 +24,11 @@ class UserDecorator < ApplicationDecorator
   end
 
   def graph_min_weight
-    [(body_weight_records.sort_by(&:weight).first.weight - 10), 0].max
+    [(body_weight_records.order(weight: :asc).first.weight - 10), 0].max
   end
 
   def graph_max_weight
-    body_weight_records.sort_by(&:weight).last.weight + 10
+    body_weight_records.order(weight: :desc).first.weight + 10
   end
 
   def has_weight_records?

@@ -37,11 +37,4 @@ RSpec.describe BodyWeightRecord, type: :model do
       expect(@record.valid?).to eq true
     end
   end
-
-  describe "ordering" do
-    it "should order by most recent first" do
-      expect(BodyWeightRecord.first).to eq(body_weight_records(:most_recent))
-    end
-  end
-
 end
