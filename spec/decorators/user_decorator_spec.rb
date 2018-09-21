@@ -31,4 +31,18 @@ RSpec.describe UserDecorator do
       expect(decorated_user.has_weight_records?).to eq false
     end
   end
+
+  describe '.graph_max_weight' do
+    it "works" do
+      decorated_user = user.decorate
+      expect(decorated_user.graph_max_weight).to eq 13
+    end
+  end
+
+  describe '.graph_min_weight' do
+    it "works" do
+      decorated_user = user.decorate
+      expect(decorated_user.graph_min_weight).to eq 0
+    end
+  end
 end
