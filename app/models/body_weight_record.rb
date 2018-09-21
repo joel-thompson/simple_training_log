@@ -25,8 +25,6 @@ class BodyWeightRecord < ApplicationRecord
 
   belongs_to :user
 
-  default_scope -> { order(created_at: :desc) }
-
   validates :weight, :weighed_at, presence: true
 
   considered_active.from(:weighed_at).until(:expired_at)
