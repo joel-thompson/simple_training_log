@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: lifts
+#
+#  id             :integer          not null, primary key
+#  last_amrap_set :integer
+#  location       :string
+#  notes          :text
+#  occurred_date  :date
+#  occurred_time  :string
+#  reps           :integer
+#  sets           :integer
+#  weight         :float
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  lift_choice_id :integer
+#
+# Indexes
+#
+#  index_lifts_on_lift_choice_id  (lift_choice_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (lift_choice_id => lift_choices.id)
+#
+
+squat:
+  lift_choice: squat
+  occurred_date: <%= Date.current %>
+  occurred_time: 'morning'
+  weight: 70.8
+  sets: 3
+  reps: 5

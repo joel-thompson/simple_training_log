@@ -2,18 +2,16 @@ require 'rails_helper'
 
 RSpec.describe RoundsController, type: :controller do
 
-  fixtures :users
+  fixtures :users, :rounds
+  fixtures :martial_arts
+  set_fixture_class 'martial_arts' => MartialArts::MartialArt
 
-  before do
-    @user = users(:michael)
-    @other_user = users(:archer)
-    @martial_art = @user.martial_arts.create(
-      duration_in_seconds: 120,
-      occurred_time: "morning",
-      occurred_date: Date.current
-    )
-    @round_saved = @martial_art.rounds.create(partner_name: "chris")
-  end
+  let(:user) { users(:martial_artist) }
+  let(:other_user) { users(:archer) }
+
+  let(:martial_art) { martial_arts(:jiu_jitsu) }
+
+  let(:round_saved) { rounds(:roll) }
 
   describe "#general" do
     it "redirects to login if logged out" do
@@ -24,7 +22,7 @@ RSpec.describe RoundsController, type: :controller do
 
   describe "#index" do
     it "redirects to home page if logged in" do
-      log_in_as @user
+      log_in_as user
       get :index
       expect(response).to redirect_to(root_url)
     end
@@ -32,9 +30,9 @@ RSpec.describe RoundsController, type: :controller do
 
   describe "#new" do
     it "redirects to root if incorrect user" do
-      log_in_as @other_user
+      log_in_as other_user
       get :new, params: {
-        martial_art_id: @martial_art.id
+        martial_art_id: martial_art.id
       }
       expect(response).to redirect_to(root_url)
     end
@@ -42,10 +40,10 @@ RSpec.describe RoundsController, type: :controller do
 
   describe "#create" do
     it "creates" do
-      log_in_as @user
+      log_in_as user
       expect{
         post :create, params: {
-          martial_art_id: @martial_art.id,
+          martial_art_id: martial_art.id,
           round: {
             partner_name: "chris"
           }
@@ -54,10 +52,10 @@ RSpec.describe RoundsController, type: :controller do
     end
 
     it "redirects to root and does not create if incorrect user" do
-      log_in_as @other_user
+      log_in_as other_user
       expect{
         post :create, params: {
-          martial_art_id: @martial_art.id,
+          martial_art_id: martial_art.id,
           round: {
             partner_name: "link"
           }
@@ -69,9 +67,9 @@ RSpec.describe RoundsController, type: :controller do
 
   describe "#edit" do
     it "redirects to root if wrong user" do
-      log_in_as @other_user
+      log_in_as other_user
       get :edit, params: {
-        id: @round_saved.id
+        id: round_saved.id
       }
       expect(response).to redirect_to(root_url)
     end
@@ -79,44 +77,44 @@ RSpec.describe RoundsController, type: :controller do
 
   describe "#update" do
     it "updates" do
-      log_in_as @user
+      log_in_as user
       put :update, params: {
-        id: @round_saved.id,
+        id: round_saved.id,
         round: {
           notes: "updated"
         }
       }
-      expect(@round_saved.reload.notes).to eq("updated")
+      expect(round_saved.reload.notes).to eq("updated")
     end
 
     it "redirects if wrong user and does not update" do
-      log_in_as @other_user
+      log_in_as other_user
       put :update, params: {
-        id: @round_saved.id,
+        id: round_saved.id,
         round: {
           notes: "updated wrong"
         }
       }
-      expect(@round_saved.reload.notes).to_not eq("updated wrong")
+      expect(round_saved.reload.notes).to_not eq("updated wrong")
       expect(response).to redirect_to(root_url)
     end
   end
 
   describe "#destroy" do
     it "destroys" do
-      log_in_as @user
+      log_in_as user
       expect{
         delete :destroy, params: {
-            id: @round_saved.id
+            id: round_saved.id
         }
       }.to change{Round.count}.by(-1)
     end
 
     it "redirects if wrong user and does not destroy" do
-      log_in_as @other_user
+      log_in_as other_user
       expect{
         delete :destroy, params: {
-            id: @round_saved.id
+            id: round_saved.id
         }
       }.to_not change{Round.count}
       expect(response).to redirect_to(root_url)
@@ -125,17 +123,17 @@ RSpec.describe RoundsController, type: :controller do
 
   describe "#show" do
     it "redirects to martial art if correct user" do
-      log_in_as @user
+      log_in_as user
       get :show, params: {
-        id: @round_saved.id
+        id: round_saved.id
       }
-      expect(response).to redirect_to(martial_art_path(@martial_art))
+      expect(response).to redirect_to(martial_art_path(martial_art))
     end
 
     it "redirects to root if wrong user" do
-      log_in_as @other_user
+      log_in_as other_user
       get :show, params: {
-        id: @round_saved.id
+        id: round_saved.id
       }
       expect(response).to redirect_to(root_url)
     end
