@@ -1,71 +1,57 @@
 <%= form_for(@lift) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-
   <%= hidden_field_tag :lift_choice_id, @lift_choice.id %>
 
   <div class="columns">
-
     <div class="column is-one-third">
-      <% if @lift.has_weight? %>
-        <div class="field">
-          <%= f.label :weight, class: 'label' %>
-          <div class="control">
-            <%= f.number_field :weight, class: 'input', type: 'float', placeholder: "e.g. 135", min: 0 %>
-          </div>
-        </div>
-      <% end %>
-      <div class="field">
-        <%= f.label :sets, class: 'label' %>
-        <div class="control">
-          <%= f.number_field :sets, class: 'input', type: 'number', placeholder: "e.g. 3", min: 1 %>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label :reps, class: 'label' %>
-        <div class="control">
-          <%= f.number_field :reps, class: 'input', type: 'number', placeholder: "e.g. 5", min: 1 %>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label "Last AMRAP Set?", class: 'label' %>
-        <div class="control">
-          <%= f.number_field :last_amrap_set, class: 'input', type: 'number', placeholder: "e.g. 5", min: 1 %>
-        </div>
-      </div>
+      <%
+        if @lift.has_weight?
+          render "_components/forms/number_field", form: f,
+          attribute: :weight,
+          type: "float",
+          placeholder: "e.g. 135",
+          min: 0
+        end
+      %>
+      <%=
+        render "_components/forms/number_field", form: f,
+        attribute: :sets,
+        placeholder: "e.g. 3",
+        min: 1
+      %>
+      <%=
+        render "_components/forms/number_field", form: f,
+        attribute: :reps,
+        placeholder: "e.g. 5",
+        min: 1
+      %>
+      <%=
+        render "_components/forms/number_field", form: f,
+        attribute: :last_amrap_set,
+        placeholder: "e.g. 5",
+        min: 1
+      %>
     </div>
 
     <div class="column is-one-third">
-      <div class="field">
-        <%= f.label "Occured Date", class: 'label' %>
-        <div class="control">
-          <%= f.date_field :occurred_date, class: 'input' %>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label "Occurred Time", class: 'label' %>
-        <div class="control">
-          <div class="select">
-            <%= f.select(:occurred_time,  @time_choices) %>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label :notes, class: 'label' %>
-        <div class="control">
-          <%= f.text_area :notes, class: 'textarea', rows: 3, placeholder: "e.g. Swole af" %>
-        </div>
-      </div>
+      <%= render "_components/forms/date_field", form: f, attribute: :occurred_date %>
+      <%=
+        render "_components/forms/select", form: f,
+        attribute: :occurred_time,
+        choices: @time_choices
+      %>
+      <%=
+        render "_components/forms/text_area", form: f,
+        attribute: :notes,
+        rows: 3,
+        placeholder: "e.g. Swole af"
+      %>
     </div>
-
   </div>
 
   <div class="columns">
     <div class="column">
-      <div class="field">
-        <div class="control">
-          <%= f.submit yield(:button_text), class: "button is-link" %>
-        </div>
-      </div>
+      <%= render "_components/forms/submit", form: f, text: yield(:button_text) %>
     </div>
   </div>
 

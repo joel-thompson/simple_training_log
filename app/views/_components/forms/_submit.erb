@@ -1,0 +1,8 @@
+<% form = local_assigns.fetch(:form) %>
+<% text = local_assigns.fetch(:text, "Submit") %>
+
+<div class="field">
+  <div class="control">
+    <%= form.submit text, class: "button is-link" %>
+  </div>
+</div>

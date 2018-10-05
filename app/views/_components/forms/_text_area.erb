@@ -1,0 +1,11 @@
+<% form = local_assigns.fetch(:form) %>
+<% attribute = local_assigns.fetch(:attribute) %>
+<% rows = local_assigns.fetch(:rows, 5) %>
+<% placeholder = local_assigns.fetch(:placeholder, nil) %>
+
+<div class="field">
+  <%= form.label attribute, class: 'label' %>
+  <div class="control">
+    <%= form.text_area attribute, class: 'textarea', rows: rows, placeholder: placeholder %>
+  </div>
+</div>

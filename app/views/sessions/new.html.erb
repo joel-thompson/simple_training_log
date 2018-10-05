@@ -4,38 +4,22 @@
 <section class="section">
   <div class="columns is-centered">
     <div class="column is-one-third">
+
+      <%= link_to "Send new activation email", new_account_activation_url(email: @user.email), class: 'button is-link' if @user %>
+
       <%= form_for(:session, url: login_path) do |f| %>
 
-      <div class="field">
-          <%= f.label :email, class: 'label' %>
-          <%= link_to "(resend activation email)", new_account_activation_url(email: @user.email) if @user%>
-          <div class="control">
-            <%= f.email_field :email, class: 'input', type: 'email' %>
-          </div>
-      </div>
+        <%= render "_components/forms/email_field", form: f  %>
+        <%= render "_components/forms/password_field", form: f %>
 
-      <div class="field">
-          <%= f.label :password, class: 'label' %>
+        <%=
+          render "_components/forms/check_box",
+          form: f,
+          text: "Remember me on this computer",
+          attribute: :remember_me
+        %>
 
-          <div class="control">
-            <%= f.password_field :password, class: 'input', type: 'password' %>
-          </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-            <%= f.label :remember_me, class: "checkbox" do %>
-            <%= f.check_box :remember_me %>
-            Remember me on this computer
-            <% end %>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="control">
-            <%= f.submit "Log in", class: "button is-link" %>
-          </div>
-        </div>
+        <%= render "_components/forms/submit", form: f, text: "Log In" %>
 
       <% end %>
       <br>

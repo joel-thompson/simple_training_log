@@ -1,0 +1,8 @@
+<% form = local_assigns.fetch(:form) %>
+
+<div class="field">
+  <%= form.label :email, class: "label"  %>
+  <div class="control">
+    <%= form.email_field :email, class: 'input', type: 'email' %>
+  </div>
+</div>

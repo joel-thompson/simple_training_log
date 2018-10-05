@@ -1,0 +1,12 @@
+<% form = local_assigns.fetch(:form) %>
+<% text = local_assigns.fetch(:text) %>
+<% attribute = local_assigns.fetch(:attribute) %>
+
+<div class="field">
+  <div class="control">
+    <%= form.label attribute, class: "checkbox" do %>
+      <%= form.check_box attribute %>
+        <%= text %>
+    <% end %>
+  </div>
+</div>

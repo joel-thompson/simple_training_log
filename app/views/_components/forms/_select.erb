@@ -1,0 +1,12 @@
+<% form = local_assigns.fetch(:form) %>
+<% attribute = local_assigns.fetch(:attribute) %>
+<% choices = local_assigns.fetch(:choices) %>
+
+<div class="field">
+  <%= form.label attribute, class: 'label' %>
+  <div class="control">
+    <div class="select">
+      <%= form.select(attribute, choices) %>
+    </div>
+  </div>
+</div>
