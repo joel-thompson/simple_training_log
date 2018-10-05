@@ -1,32 +1,25 @@
 <%= form_for(@round) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-
   <%= hidden_field_tag :martial_art_id, @martial_art.id %>
 
-  <div class="field">
-    <%= f.label :partner_name, class: 'label' %>
-    <div class="control">
-      <%= f.text_field :partner_name, class: 'input', type: 'text', placeholder: "e.g. chris" %>
-    </div>
-  </div>
+  <%=
+    render "_components/forms/text_field", form: f,
+    attribute: :partner_name,
+    placeholder: "e.g. chris"
+  %>
 
-  <div class="field">
-    <%= f.label :submissions, class: 'label' %>
-    <div class="control">
-      <%= f.number_field :submissions, class: 'input', type: 'number', placeholder: "e.g. 1", min: 0 %>
-    </div>
-  </div>
+  <%=
+    render "_components/forms/number_field", form: f,
+    attribute: :submissions,
+    placeholder: "e.g. 1",
+    min: 0
+  %>
 
-  <div class="field">
-    <%= f.label :notes, class: 'label' %>
-    <div class="control">
-      <%= f.text_area :notes, class: 'textarea', rows: 5, placeholder: "e.g. seems easy when mounted" %>
-    </div>
-  </div>
+  <%=
+    render "_components/forms/text_area", form: f,
+    attribute: :notes,
+    placeholder: "e.g. seems easy when mounted"
+  %>
 
-  <div class="field">
-    <div class="control">
-      <%= f.submit yield(:button_text), class: "button is-link" %>
-    </div>
-  </div>
+  <%= render "_components/forms/submit", form: f, text: yield(:button_text) %>
 <% end %>

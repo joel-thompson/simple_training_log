@@ -1,0 +1,9 @@
+<% form = local_assigns.fetch(:form) %>
+<% attribute = local_assigns.fetch(:attribute) %>
+
+<div class="field">
+  <%= form.label attribute, class: 'label' %>
+  <div class="control">
+    <%= form.date_field attribute, class: 'input' %>
+  </div>
+</div>

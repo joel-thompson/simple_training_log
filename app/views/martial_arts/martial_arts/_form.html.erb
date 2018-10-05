@@ -1,72 +1,37 @@
 <%= form_for(@martial_art, as: :martial_art,
                            url: form_path) do |f| %>
+
   <%= render 'shared/error_messages', object: f.object %>
+  <%= render "_components/forms/select", form: f, attribute: :type, choices: @choices %>
+  <%= render "_components/forms/date_field", form: f, attribute: :occurred_date %>
+  <%= render "_components/forms/select", form: f, attribute: :occurred_time, choices: @time_choices %>
+  <%= render "_components/forms/text_field", form: f, attribute: :location, placeholder: "e.g. Berkeley" %>
 
-  <div class="field">
-    <%= f.label :type, class: 'label' %>
-    <div class="control">
-      <div class="select">
-        <%= f.select(:type, @choices) %>
-      </div>
-    </div>
-  </div>
+  <%=
+    render "_components/forms/number_field", form: f,
+    attribute: :duration_in_minutes,
+    placeholder: "e.g. 1",
+    min: 0
+  %>
 
-  <div class="field">
-    <%= f.label "Occured Date", class: 'label' %>
-    <div class="control">
+  <%=
+    render "_components/forms/text_area", form: f,
+    attribute: :goal,
+    placeholder: "e.g. armbar five times"
+  %>
 
-        <%= f.date_field :occurred_date, class: 'input' %>
+  <%=
+    render "_components/forms/text_area", form: f,
+    attribute: :goal_result,
+    placeholder: "e.g. hit the armbar"
+  %>
 
-    </div>
-  </div>
+  <%=
+    render "_components/forms/text_area", form: f,
+    attribute: :notes,
+    rows: 11,
+    placeholder: "e.g. Had a great time"
+  %>
 
-  <div class="field">
-    <%= f.label "Occurred Time", class: 'label' %>
-    <div class="control">
-      <div class="select">
-        <%= f.select(:occurred_time,  @time_choices) %>
-      </div>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :location, class: "label" %>
-    <div class="control">
-      <%= f.text_field :location, class: 'input', type: 'text', placeholder: "e.g. Berkeley" %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :duration, class: 'label' %>
-    <div class="control">
-      <%= f.number_field :duration_in_minutes, class: 'input', type: 'number', placeholder: "e.g. 1", min: 0 %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :goal, class: 'label' %>
-    <div class="control">
-      <%= f.text_area :goal, class: 'textarea', rows: 5, placeholder: "e.g. armbar five times" %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :goal_result, class: 'label' %>
-    <div class="control">
-      <%= f.text_area :goal_result, class: 'textarea', rows: 5, placeholder: "e.g. hit the armbar" %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :notes, class: 'label' %>
-    <div class="control">
-      <%= f.text_area :notes, class: 'textarea', rows: 11, placeholder: "e.g. Had a great time" %>
-    </div>
-  </div>
-
-  <div class="field">
-    <div class="control">
-      <%= f.submit yield(:button_text), class: "button is-link" %>
-    </div>
-  </div>
+  <%= render "_components/forms/submit", form: f, text: yield(:button_text) %>
 <% end %>

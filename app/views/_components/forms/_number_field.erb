@@ -1,0 +1,15 @@
+<% form = local_assigns.fetch(:form) %>
+<% attribute = local_assigns.fetch(:attribute) %>
+<% type = local_assigns.fetch(:type, "number") %>
+<% placeholder = local_assigns.fetch(:placeholder, nil) %>
+<% min = local_assigns.fetch(:min, nil) %>
+<% label_text = local_assigns.fetch(:label_text, nil) %>
+
+<% form_label = label_text || attribute  %>
+
+<div class="field">
+  <%= form.label form_label, class: 'label' %>
+  <div class="control">
+    <%= form.number_field attribute, class: 'input', type: 'number', placeholder: "e.g. 1", min: 0 %>
+  </div>
+</div>
