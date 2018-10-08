@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180920181138) do
+ActiveRecord::Schema.define(version: 20181006181014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,17 @@ ActiveRecord::Schema.define(version: 20180920181138) do
     t.index ["martial_art_id"], name: "index_techniques_on_martial_art_id", using: :btree
   end
 
+  create_table "training_programs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "notes"
+    t.datetime "activated_at"
+    t.datetime "deactivated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_training_programs_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -142,4 +153,5 @@ ActiveRecord::Schema.define(version: 20180920181138) do
   add_foreign_key "microposts", "users"
   add_foreign_key "rounds", "martial_arts"
   add_foreign_key "techniques", "martial_arts"
+  add_foreign_key "training_programs", "users"
 end

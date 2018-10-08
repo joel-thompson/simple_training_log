@@ -1,17 +1,10 @@
-# This is no longer used (switched to interactions gem)
-# Leaving here for now in case i want to switch back
-
 module BodyWeightRecords
-  class Update < Mutations::Command
+  class Create < ActiveInteraction::Base
 
-    required do
-      duck :user
-      float :weight
-    end
+    float :weight
+    object :user, class: User
 
-    optional do
-      time :at
-    end
+    time :at, default: nil
 
     def execute
       expire_current_weight if user.active_body_weight_record
@@ -29,7 +22,7 @@ module BodyWeightRecords
       )
     end
 
-    def now
+    private def now
       @now ||= (at || Time.now)
     end
 

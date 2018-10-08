@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   post '/lift_calculations/result', to: 'lift_calculations#result', as: 'lift_calculations_result'
   get '/lift_calculations/result', to: redirect('/lift_calculations')
 
+  resources :training_programs
+
 end

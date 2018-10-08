@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: training_programs
+#
+#  id             :integer          not null, primary key
+#  activated_at   :datetime
+#  deactivated_at :datetime
+#  name           :string
+#  notes          :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :integer
+#
+# Indexes
+#
+#  index_training_programs_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+previous_starting_strength:
+  name: "previous_starting_strength"
+  notes: "old do stuff"
+  user: weight_lifter
+  activated_at: <%= Time.now - 5.days %>
+  deactivated_at: <%= Time.now %>
+
+starting_strength:
+  name: "starting_strength"
+  notes: "do stuff"
+  user: weight_lifter
+  activated_at: <%= Time.now %>
+
+program_without_user:
+  name: "starting_strength"
+  notes: "do stuff"
