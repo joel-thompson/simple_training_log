@@ -31,8 +31,10 @@ class User < ApplicationRecord
   has_many :cardio_choices, dependent: :destroy
   has_many :lifts, through: :lift_choices
   has_many :cardios, through: :cardio_choices
+  has_many :training_programs, dependent: :destroy
 
   has_uniquely_active :body_weight_records
+  has_uniquely_active :training_programs
 
 	attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -142,7 +144,7 @@ class User < ApplicationRecord
   end
 
   def update_weight(weight)
-    BodyWeightRecords::Update.run!(user: self, weight: weight)
+    BodyWeightRecords::Create.run!(user: self, weight: weight)
   end
 
 	private
