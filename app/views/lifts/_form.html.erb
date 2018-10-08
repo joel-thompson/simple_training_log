@@ -4,15 +4,17 @@
 
   <div class="columns">
     <div class="column is-one-third">
-      <%
-        if @lift.has_weight?
-          render "_components/forms/number_field", form: f,
-          attribute: :weight,
-          type: "float",
-          placeholder: "e.g. 135",
-          min: 0
-        end
-      %>
+
+        <% if @lift.has_weight? %>
+          <%=
+            render "_components/forms/number_field", form: f,
+            attribute: :weight,
+            type: "float",
+            placeholder: "e.g. 135",
+            min: 0
+          %>
+        <% end %>
+
       <%=
         render "_components/forms/number_field", form: f,
         attribute: :sets,
