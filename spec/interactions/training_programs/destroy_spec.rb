@@ -28,7 +28,7 @@ module TrainingPrograms
 
     context 'execution' do
       it "deactivates the program" do
-        expect(TrainingPrograms::Deactivate).to receive(:run!).with(program: program)
+        expect(TrainingPrograms::Deactivate).to receive(:run).with(program: program).and_call_original
         TrainingPrograms::Destroy.run!(params)
       end
 

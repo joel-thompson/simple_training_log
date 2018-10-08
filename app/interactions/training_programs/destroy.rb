@@ -8,7 +8,7 @@ module TrainingPrograms
     end
 
     private def deactivate_program
-      TrainingPrograms::Deactivate.run!(program: program)
+      compose(TrainingPrograms::Deactivate, program: program)
     end
 
     private def destroy_program

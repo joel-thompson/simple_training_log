@@ -85,7 +85,7 @@ module TrainingPrograms
 
       it "expires the previously active program" do
         expect(old_program.deactivated_at).to eq nil
-        expect(TrainingPrograms::Deactivate).to receive(:run!).with(program: old_program, at: Time.now).and_call_original
+        expect(TrainingPrograms::Deactivate).to receive(:run).with(program: old_program, at: Time.now).and_call_original
         TrainingPrograms::Create.run!(params)
       end
 
