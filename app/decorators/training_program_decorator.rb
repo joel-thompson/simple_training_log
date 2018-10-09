@@ -10,4 +10,16 @@ class TrainingProgramDecorator < ApplicationDecorator
   #     end
   #   end
 
+  def name_text_formatted
+    h.simple_format(name.capitalize)
+  end
+
+  def name_text
+    name.capitalize
+  end
+
+  def notes_text
+    h.simple_format(notes)
+  end
+
 end

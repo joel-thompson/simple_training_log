@@ -1,7 +1,7 @@
 module TrainingPrograms
   class Find < ActiveInteraction::Base
     integer :id
-    object :user
+    object :user, class: User
 
     def execute
       user.training_programs.find_by(id: id)

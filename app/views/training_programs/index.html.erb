@@ -1,0 +1,30 @@
+<% provide(:title, "Training Programs") %>
+<% provide(:heading_title, "Training Programs") %>
+<% provide(:heading_subtitle, "All") %>
+
+<section class="section">
+  <% if @current_training_program %>
+    <p><strong>Current Program: <%= link_to @current_training_program.name_text, @current_training_program %></strong></p>
+    <br>
+    <%= @current_training_program.notes_text %>
+    <br>
+  <% end %>
+
+  <div class="buttons">
+    <%= link_to "add training program", new_training_program_path, class: "button is-link" %>
+  </div>
+
+  <% if @training_programs.any? %>
+      <hr>
+      <p><strong>All Available Programs:</strong></p>
+      <br>
+      <div class="columns is-multiline">
+        <%= render @training_programs %>
+      </div>
+  <% end %>
+
+  <% if @training_programs.count > TrainingProgram.page_length %>
+    <hr>
+  <% end %>
+  <%= will_paginate @training_programs, renderer: BulmaPagination::Rails %>
+</section>

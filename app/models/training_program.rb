@@ -28,4 +28,9 @@ class TrainingProgram < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :notes, presence: true, length: { maximum: 1000 }
+
+  self.per_page = 9
+  def self.page_length
+    self.per_page
+  end
 end

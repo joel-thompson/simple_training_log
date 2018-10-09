@@ -5,11 +5,14 @@ module TrainingPrograms
     before { Timecop.freeze(Time.now) }
 
     fixtures :users, :training_programs
+    let(:user) { users(:weight_lifter) }
+    let(:other_user) { users(:martial_artist) }
     let(:good_program) { training_programs(:starting_strength) }
 
     let(:params) {
       {
         program: good_program,
+        user: user,
       }
     }
 
@@ -23,6 +26,18 @@ module TrainingPrograms
         params[:program] = nil
         outcome = TrainingPrograms::Deactivate.run(params)
         expect(outcome.errors.messages[:program]).to include("is required")
+      end
+
+      it "is invalid without user" do
+        params[:user] = nil
+        outcome = TrainingPrograms::Deactivate.run(params)
+        expect(outcome.errors.messages[:user]).to include("is required")
+      end
+
+      it "is invalid without correct user" do
+        params[:user] = other_user
+        outcome = TrainingPrograms::Deactivate.run(params)
+        expect(outcome.errors.messages[:user]).to include("does not own this program")
       end
     end
 
