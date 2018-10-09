@@ -6,6 +6,9 @@ module TrainingPrograms
 
     fixtures :users, :training_programs
 
+    let(:user) { users(:weight_lifter) }
+    let(:other_user) { users(:martial_artist) }
+
     let(:good_program) { training_programs(:starting_strength) }
     let(:good_name) { "updated name" }
     let(:good_notes) { "updated notes" }
@@ -15,6 +18,7 @@ module TrainingPrograms
         program: good_program,
         name: good_name,
         notes: good_notes,
+        user: user,
       }
     }
 
@@ -28,6 +32,18 @@ module TrainingPrograms
         params[:program] = nil
         outcome = TrainingPrograms::Update.run(params)
         expect(outcome.errors.messages[:program]).to include("is required")
+      end
+
+      it "is invalid without user" do
+        params[:user] = nil
+        outcome = TrainingPrograms::Update.run(params)
+        expect(outcome.errors.messages[:user]).to include("is required")
+      end
+
+      it "is invalid without correct user" do
+        params[:user] = other_user
+        outcome = TrainingPrograms::Update.run(params)
+        expect(outcome.errors.messages[:user]).to include("does not own this program")
       end
     end
 

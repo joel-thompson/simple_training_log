@@ -1,0 +1,19 @@
+<%= form_for @training_program do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+
+  <%=
+    render "_components/forms/text_field", form: f,
+    attribute: :name,
+    placeholder: "e.g. Wombler 9/4/1"
+  %>
+
+  <%=
+    render "_components/forms/text_area", form: f,
+    attribute: :notes,
+    rows: 10,
+    placeholder: "Tuesday: 3 sets of 5 squats"
+  %>
+
+  <%= render "_components/forms/submit", form: f %>
+
+<% end %>

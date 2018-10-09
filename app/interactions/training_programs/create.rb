@@ -16,7 +16,11 @@ module TrainingPrograms
     end
 
     private def expire_previous_program
-      compose(TrainingPrograms::Deactivate, program: user.active_training_program, at: activated_at)
+      compose(TrainingPrograms::Deactivate,
+        program: user.active_training_program,
+        user: user,
+        at: activated_at,
+      )
     end
 
     private def create_program

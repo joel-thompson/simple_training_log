@@ -1,26 +1,27 @@
 module TrainingPrograms
-  class Deactivate < ActiveInteraction::Base
+  class DuplicateAndActivate < ActiveInteraction::Base
     object :program, class: TrainingProgram
     object :user, class: User
+
     time :at, default: nil
 
     validate :ensure_correct_user
 
     def execute
-      deactivate_program
+      create_copy_of_program
     end
 
-    def deactivate_program
-      program.deactivated_at = deactivated_at
-
-      unless program.save
-        errors.merge!(program.errors)
-      end
-
-      program
+    private def create_copy_of_program
+      compose(
+        TrainingPrograms::Create,
+        user: user,
+        name: program.name,
+        notes: program.notes,
+        at: activated_at,
+      )
     end
 
-    private def deactivated_at
+    private def activated_at
       at || Time.now
     end
 

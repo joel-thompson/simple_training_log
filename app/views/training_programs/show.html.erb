@@ -1,0 +1,24 @@
+<% provide(:title, "Training Programs") %>
+<% provide(:heading_title, "Training Programs") %>
+<% provide(:heading_subtitle, @training_program.name_text) %>
+
+<section class="section">
+  <%= @training_program.notes_text %>
+  <hr>
+  <div class="buttons">
+    <%= link_to "edit", edit_training_program_path(@training_program), class: "button is-link" %>
+
+    <% unless @training_program.active? %>
+      <%= link_to "duplicate and reactivate", duplicate_and_activate_training_program_path(@training_program),
+                                        method: :post, class: "button is-link" %>
+    <% end %>
+
+    <% if @training_program.active? %>
+      <%= link_to "deactivate", deactivate_training_program_path(@training_program), method: :put,
+                                        data: { confirm: "You sure?" }, class: "button is-danger" %>
+    <% end %>
+
+    <%= link_to "delete", @training_program, method: :delete,
+                                      data: { confirm: "You sure?" }, class: "button is-danger" %>
+  </div>
+</section>

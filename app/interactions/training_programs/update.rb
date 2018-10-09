@@ -2,8 +2,11 @@ module TrainingPrograms
   class Update < ActiveInteraction::Base
 
     object :program, class: TrainingProgram
+    object :user, class: User
     string :name, default: nil, strip: true
     string :notes, default: nil, strip: true
+
+    validate :ensure_correct_user
 
     def to_model
       program
@@ -22,6 +25,12 @@ module TrainingPrograms
       end
 
       program
+    end
+
+    private def ensure_correct_user
+      unless program.user == user
+        errors.add(:user, "does not own this program")
+      end
     end
   end
 end
