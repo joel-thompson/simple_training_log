@@ -1,0 +1,8 @@
+<div class="box">
+  <h4 class="title is-4">Current Program: <%= link_to @current_program.name_text, @current_program %></h4>
+
+  <% if @current_program.schedule? %>
+    <hr>
+    <%= @current_program.schedule_text %>
+  <% end %>
+</div>
