@@ -6,9 +6,10 @@
       <%= render 'add_button_box' %>
     </div>
 
-    <% if @feed_items.any? %>
+    <% if @feed_items.any? || @current_program %>
       <div class="column">
-        <%= render 'shared/feed' %>
+        <%= render 'program_box' if @current_program %>
+        <%= render 'shared/feed' if @feed_items.any? %>
       </div>
     <% end %>
   </div>
