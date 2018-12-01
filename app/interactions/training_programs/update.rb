@@ -5,6 +5,7 @@ module TrainingPrograms
     object :user, class: User
     string :name, default: nil, strip: true
     string :notes, default: nil, strip: true
+    string :schedule, default: nil, strip: true
 
     validate :ensure_correct_user
 
@@ -19,6 +20,7 @@ module TrainingPrograms
     private def update_program
       program.name = name if name?
       program.notes = notes if notes?
+      program.schedule = schedule if schedule?
 
       unless program.save
         errors.merge!(program.errors)

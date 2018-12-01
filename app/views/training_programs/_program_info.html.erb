@@ -1,0 +1,16 @@
+<% program = local_assigns.fetch(:program) %>
+
+<div class="columns">
+  <div class="column is-one-third">
+    <p><strong>Notes:</strong></p>
+    <%= program.notes_text %>
+  </div>
+
+  <% if program.schedule? %>
+    <div class="column is-one-third">
+      <p><strong>Schedule:</strong></p>
+      <%= program.schedule_text %>
+    </div>
+  <% end %>
+
+</div>

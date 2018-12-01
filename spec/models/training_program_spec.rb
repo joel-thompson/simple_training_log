@@ -7,6 +7,7 @@
 #  deactivated_at :datetime
 #  name           :string
 #  notes          :text
+#  schedule       :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :integer
@@ -44,7 +45,7 @@ RSpec.describe TrainingProgram, type: :model do
     end
 
     it "is invalid with a long notes" do
-      program.notes = "a" * 1001
+      program.notes = "a" * 5001
       expect(program.valid?).to eq false
     end
 
@@ -55,6 +56,11 @@ RSpec.describe TrainingProgram, type: :model do
 
     it "is invalid without notes" do
       program.notes = nil
+      expect(program.valid?).to eq false
+    end
+
+    it "is invalid with a long schedule" do
+      program.schedule = "a" * 1001
       expect(program.valid?).to eq false
     end
   end

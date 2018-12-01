@@ -6,8 +6,7 @@
   <% if @current_training_program %>
     <p><strong>Current Program: <%= link_to @current_training_program.name_text, @current_training_program %></strong></p>
     <br>
-    <%= @current_training_program.notes_text %>
-    <br>
+    <%= render "program_info", program: @current_training_program %>
   <% end %>
 
   <div class="buttons">

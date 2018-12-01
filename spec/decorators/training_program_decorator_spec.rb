@@ -24,4 +24,10 @@ RSpec.describe TrainingProgramDecorator do
     end
   end
 
+  context '.schedule_text' do
+    it "formats" do
+      expect(program.decorate.schedule_text).to eq "<p>monday: lift</p>"
+    end
+  end
+
 end

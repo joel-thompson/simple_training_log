@@ -4,6 +4,7 @@ module TrainingPrograms
     object :user, class: User
     string :name, strip: true
     string :notes, strip: true
+    string :schedule, default: nil, strip: true
     time :at, default: nil
 
     def to_model
@@ -27,6 +28,7 @@ module TrainingPrograms
       program = user.training_programs.new(
         name: name,
         notes: notes,
+        schedule: schedule,
         activated_at: activated_at,
       )
 
