@@ -12,12 +12,14 @@ module TrainingPrograms
     let(:good_program) { training_programs(:starting_strength) }
     let(:good_name) { "updated name" }
     let(:good_notes) { "updated notes" }
+    let(:good_schedule) { "updated schedule" }
 
     let(:params) {
       {
         program: good_program,
         name: good_name,
         notes: good_notes,
+        schedule: good_schedule,
         user: user,
       }
     }
@@ -56,21 +58,26 @@ module TrainingPrograms
       it "strips leading and trailing whitespace from name and notes" do
         params[:name] = " foo "
         params[:notes] = " bar "
+        params[:schedule] = " baz "
         outcome = TrainingPrograms::Update.run(params)
         expect(outcome.result.name).to eq "foo"
         expect(outcome.result.notes).to eq "bar"
+        expect(outcome.result.schedule).to eq "baz"
       end
 
       it "updates the attributes correctly" do
         expect(good_program.name).to_not eq params[:name]
         expect(good_program.notes).to_not eq params[:notes]
+        expect(good_program.schedule).to_not eq params[:schedule]
 
         outcome = TrainingPrograms::Update.run(params)
         expect(outcome.result.name).to eq params[:name]
         expect(outcome.result.notes).to eq params[:notes]
+        expect(outcome.result.schedule).to eq params[:schedule]
 
         expect(good_program.reload.name).to eq params[:name]
         expect(good_program.reload.notes).to eq params[:notes]
+        expect(good_program.reload.schedule).to eq params[:schedule]
       end
     end
   end

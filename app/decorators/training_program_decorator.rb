@@ -22,4 +22,8 @@ class TrainingProgramDecorator < ApplicationDecorator
     h.simple_format(notes)
   end
 
+  def schedule_text
+    h.simple_format(schedule)
+  end
+
 end

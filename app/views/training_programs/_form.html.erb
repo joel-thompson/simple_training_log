@@ -11,7 +11,14 @@
     render "_components/forms/text_area", form: f,
     attribute: :notes,
     rows: 10,
-    placeholder: "Tuesday: 3 sets of 5 squats"
+    placeholder: "Lift A: 3 sets of 5 squats"
+  %>
+
+  <%=
+    render "_components/forms/text_area", form: f,
+    attribute: :schedule,
+    rows: 10,
+    placeholder: "Monday: Lift A"
   %>
 
   <%= render "_components/forms/submit", form: f %>

@@ -7,6 +7,7 @@
 #  deactivated_at :datetime
 #  name           :string
 #  notes          :text
+#  schedule       :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :integer
@@ -27,7 +28,8 @@ class TrainingProgram < ApplicationRecord
   considered_active.from(:activated_at).until(:deactivated_at)
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :notes, presence: true, length: { maximum: 1000 }
+  validates :notes, presence: true, length: { maximum: 5000 }
+  validates :schedule, length: { maximum: 1000 }
 
   self.per_page = 9
   def self.page_length

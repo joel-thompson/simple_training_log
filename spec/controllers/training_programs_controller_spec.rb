@@ -30,12 +30,14 @@ RSpec.describe TrainingProgramsController, type: :controller do
         user: user,
         name: 'foo',
         notes: 'bar',
+        schedule: 'baz',
       ).and_call_original
 
       post :create, params: {
         training_program: {
           name: 'foo',
           notes: 'bar',
+          schedule: 'baz',
         }
       }
     end
@@ -49,6 +51,7 @@ RSpec.describe TrainingProgramsController, type: :controller do
         user: user,
         name: program.name,
         notes: program.notes,
+        schedule: program.schedule,
         program: program,
       ).and_call_original
       get :edit, params: { id: program.id }
@@ -63,6 +66,7 @@ RSpec.describe TrainingProgramsController, type: :controller do
         user: user,
         name: 'updated foo',
         notes: 'updated bar',
+        schedule: 'updated baz',
         program: program,
       ).and_call_original
 
@@ -71,6 +75,7 @@ RSpec.describe TrainingProgramsController, type: :controller do
         training_program: {
           name: 'updated foo',
           notes: 'updated bar',
+          schedule: 'updated baz',
         }
       }
     end

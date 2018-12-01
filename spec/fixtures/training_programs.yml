@@ -7,6 +7,7 @@
 #  deactivated_at :datetime
 #  name           :string
 #  notes          :text
+#  schedule       :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  user_id        :integer
@@ -23,12 +24,14 @@
 previous_starting_strength:
   name: "previous_starting_strength"
   notes: "old do stuff"
+  schedule: "monday: lift"
   user: weight_lifter
   activated_at: <%= Time.now - 5.days %>
   deactivated_at: <%= Time.now %>
 
 starting_strength:
   name: "starting_strength"
+  schedule: "monday: lift"
   notes: "do stuff"
   user: weight_lifter
   activated_at: <%= Time.now %>

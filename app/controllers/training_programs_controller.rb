@@ -26,6 +26,7 @@ class TrainingProgramsController < ApplicationController
       user: current_user,
       name: params[:training_program][:name],
       notes: params[:training_program][:notes],
+      schedule: params[:training_program][:schedule],
     )
 
     if outcome.valid?
@@ -43,6 +44,7 @@ class TrainingProgramsController < ApplicationController
       user: current_user,
       name: training_program.name,
       notes: training_program.notes,
+      schedule: training_program.schedule,
       program: training_program,
     )
   end
@@ -53,6 +55,7 @@ class TrainingProgramsController < ApplicationController
       user: current_user,
       name: params[:training_program][:name],
       notes: params[:training_program][:notes],
+      schedule: params[:training_program][:schedule],
       program: training_program,
     )
 

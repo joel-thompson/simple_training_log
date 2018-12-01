@@ -12,12 +12,14 @@ module TrainingPrograms
     let(:good_user) { users(:weight_lifter) }
     let(:good_name) { "the program of cool" }
     let(:good_notes) { "do lots of stuff" }
+    let(:good_schedule) { "monday: do stuff" }
 
     let(:params) {
       {
         user: good_user,
         name: good_name,
         notes: good_notes,
+        schedule: good_schedule,
       }
     }
 
@@ -67,12 +69,6 @@ module TrainingPrograms
           outcome = TrainingPrograms::Create.run(params)
           expect(outcome.errors.messages[:notes]).to include("can't be blank")
         end
-
-        it "is invalid if notes is too long" do
-          params[:notes] = "a" * 1001
-          outcome = TrainingPrograms::Create.run(params)
-          expect(outcome.errors.messages[:notes]).to include("is too long (maximum is 1000 characters)")
-        end
       end
     end
 
@@ -108,12 +104,14 @@ module TrainingPrograms
         expect(outcome.result.is_a?(TrainingProgram)).to eq true
       end
 
-      it "strips leading and trailing whitespace from name and notes" do
+      it "strips leading and trailing whitespace from name and notes and schedule" do
         params[:name] = " foo "
         params[:notes] = " bar "
+        params[:schedule] = " baz "
         outcome = TrainingPrograms::Create.run(params)
         expect(outcome.result.name).to eq "foo"
         expect(outcome.result.notes).to eq "bar"
+        expect(outcome.result.schedule).to eq "baz"
       end
     end
   end
