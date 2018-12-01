@@ -1,0 +1,2 @@
+module FunctionalThresholdPowerRecordsHelper
+end

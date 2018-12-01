@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: functional_threshold_power_records
+#
+#  id          :integer          not null, primary key
+#  expired_at  :datetime
+#  recorded_at :datetime
+#  watts       :float
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :integer
+#
+# Indexes
+#
+#  index_functional_threshold_power_records_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+ten_minutes_ago:
+  watts: 20
+  created_at: <%= 10.minutes.ago %>
+  recorded_at: <%= 10.minutes.ago %>
+  expired_at: <%= 5.minutes.ago %>
+  user: user_with_ftp_records
+
+five_minutes_ago:
+  watts: 30
+  created_at: <%= 5.minutes.ago %>
+  recorded_at: <%= 5.minutes.ago %>
+  expired_at: <%= Time.now %>
+  user: user_with_ftp_records
+
+most_recent:
+  watts: 40
+  created_at: <%= Time.now %>
+  recorded_at: <%= Time.now %>
+  expired_at: <%= nil %>
+  user: user_with_ftp_records

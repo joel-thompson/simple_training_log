@@ -30,6 +30,14 @@ user_with_body_weight_records:
   activated: true
   activated_at: <%= Time.zone.now %>
 
+user_with_ftp_records:
+  name: FTP Man
+  email: ftpman@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
 martial_artist:
   name: Khabib
   email: boolshit@eaglesmma.com
