@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   post 'training_programs/duplicate_and_activate/:id', to: 'training_programs#duplicate_and_activate', as: 'duplicate_and_activate_training_program'
   put 'training_programs/deactivate/:id', to: 'training_programs#deactivate', as: 'deactivate_training_program'
 
+  resources :functional_threshold_power_records, only: [:create, :index, :destroy]
 end

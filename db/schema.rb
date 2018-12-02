@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181201171646) do
+ActiveRecord::Schema.define(version: 20181201194207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20181201171646) do
     t.date     "occurred_date"
     t.string   "occurred_time"
     t.index ["cardio_choice_id"], name: "index_cardios_on_cardio_choice_id", using: :btree
+  end
+
+  create_table "functional_threshold_power_records", force: :cascade do |t|
+    t.float    "watts"
+    t.datetime "recorded_at"
+    t.datetime "expired_at"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_functional_threshold_power_records_on_user_id", using: :btree
   end
 
   create_table "lift_choices", force: :cascade do |t|
@@ -148,6 +158,7 @@ ActiveRecord::Schema.define(version: 20181201171646) do
   add_foreign_key "body_weight_records", "users"
   add_foreign_key "cardio_choices", "users"
   add_foreign_key "cardios", "cardio_choices"
+  add_foreign_key "functional_threshold_power_records", "users"
   add_foreign_key "lift_choices", "users"
   add_foreign_key "lifts", "lift_choices"
   add_foreign_key "martial_arts", "users"

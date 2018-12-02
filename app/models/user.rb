@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :martial_arts, class_name: "MartialArts::MartialArt", dependent: :destroy
   has_many :body_weight_records, dependent: :destroy
+  has_many :functional_threshold_power_records, dependent: :destroy
   has_many :lift_choices, dependent: :destroy
   has_many :cardio_choices, dependent: :destroy
   has_many :lifts, through: :lift_choices
@@ -34,6 +35,7 @@ class User < ApplicationRecord
   has_many :training_programs, dependent: :destroy
 
   has_uniquely_active :body_weight_records
+  has_uniquely_active :functional_threshold_power_records
   has_uniquely_active :training_programs
 
 	attr_accessor :remember_token, :activation_token, :reset_token
