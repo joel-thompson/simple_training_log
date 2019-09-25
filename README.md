@@ -2,9 +2,6 @@
 
 This is a web application that can be used to log excercise. At this time it supports martial arts classes, and weight lifting. 
 
-The app is available at:
-[app.loggingprogress.com](https://app.loggingprogress.com), feel free to sign up and check it out!
-
 ## Technologies
 
 I'm using the following in this app: 
