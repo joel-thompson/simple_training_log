@@ -45,7 +45,7 @@ gem 'rubocop', '~> 0.50.0', require: false
 gem 'pry'
 gem 'pry-rails'
 gem 'carrierwave', '1.1.0'
-gem 'mini_magick', '4.8.0'
+gem 'mini_magick', '4.9.4'
 gem 'fog', '1.42.0'
 gem 'mutations'
 gem "bulma-rails", "~> 0.6.1"
