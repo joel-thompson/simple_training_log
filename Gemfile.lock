@@ -58,10 +58,11 @@ GEM
     bulma-rails (0.6.1)
       sass (~> 3.2)
     byebug (9.0.6)
-    carrierwave (1.1.0)
+    carrierwave (1.3.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+      ssrf_filter (~> 1.0)
     chartkick (3.0.1)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -71,7 +72,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.8)
     connection_pool (2.2.1)
     crass (1.0.4)
     database_cleaner (1.6.2)
@@ -252,7 +253,8 @@ GEM
       activesupport (>= 4.2)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (0.8.4)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
     intercom (3.5.23)
       json (>= 1.8)
@@ -277,12 +279,12 @@ GEM
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.1)
+    mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
+    mime-types-data (3.2020.1104)
     mini_magick (4.8.0)
     mini_portile2 (2.3.0)
-    minitest (5.10.2)
+    minitest (5.14.3)
     multi_json (1.12.1)
     mutations (0.8.1)
       activesupport
@@ -415,6 +417,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    ssrf_filter (1.0.7)
     state_of_the_nation (1.1.2)
       activerecord (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -426,7 +429,7 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
-    tzinfo (1.2.3)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
@@ -457,7 +460,7 @@ DEPENDENCIES
   bcrypt
   bulma-rails (~> 0.6.1)
   byebug
-  carrierwave (= 1.1.0)
+  carrierwave (= 1.3.2)
   chartkick
   coffee-rails (~> 4.2)
   database_cleaner
